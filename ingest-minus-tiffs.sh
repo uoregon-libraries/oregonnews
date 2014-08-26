@@ -16,16 +16,19 @@ copy_files() {
       $SOURCE $DEST
 }
 
-# Can't run without a source dir
-if [[ -z "$SOURCE" ]]; then
-  echo "SOURCE must be specified"
-  exit 1
-fi
+check_vars() {
+  # Can't run without a source dir
+  if [[ -z "$SOURCE" ]]; then
+    echo "SOURCE must be specified"
+    exit 1
+  fi
 
-# Without destination, we assume the standard chronam batch dir
-if [[ -z ${DEST+1} ]]; then
-  DEST=/opt/chronam/data/batches
-  echo "Defaulting destination to '$DEST'"
-fi
+  # Without destination, we assume the standard chronam batch dir
+  if [[ -z ${DEST+1} ]]; then
+    DEST=/opt/chronam/data/batches
+    echo "Defaulting destination to '$DEST'"
+  fi
+}
 
+check_vars
 copy_files
