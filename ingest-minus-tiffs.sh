@@ -3,23 +3,24 @@ set -eu
 
 copy_files() {
   # Remove trailing slashes because I like rsyncing with explicit full paths
-  SOURCE=${SOURCE%/}
-  DEST=${DEST%/}
+  local source=${1%/}
+  local dest=${2%/}
+  local live=$3
 
-  if [[ "$LIVE" == 1 ]]; then
+  if [[ "$live" == 1 ]]; then
     local rsyncargs="-va"
   else
     local rsyncargs="-van"
   fi
 
-  echo "rsyncing from '$SOURCE' to '$DEST'"
+  echo "rsyncing from '$source' to '$dest'"
 
   rsync $rsyncargs --delete \
       --exclude=*.tif \
       --exclude=*.tiff \
       --exclude=*.TIF \
       --exclude=*.TIFF \
-      $SOURCE $DEST
+      $source $dest
 }
 
 check_vars() {
@@ -50,4 +51,4 @@ setup_live_run() {
 
 setup_live_run
 check_vars
-copy_files
+copy_files $SOURCE $DEST $LIVE
