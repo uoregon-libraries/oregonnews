@@ -49,6 +49,10 @@ setup_live_run() {
   fi
 }
 
-setup_live_run
-check_vars
-copy_files $SOURCE $DEST $LIVE
+main() {
+  setup_live_run
+  check_vars
+  copy_files $SOURCE $DEST $LIVE
+}
+
+main
