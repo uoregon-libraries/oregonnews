@@ -6,9 +6,15 @@ copy_files() {
   SOURCE=${SOURCE%/}
   DEST=${DEST%/}
 
+  if [[ "$LIVE" == 1 ]]; then
+    local rsyncargs="-va"
+  else
+    local rsyncargs="-van"
+  fi
+
   echo "rsyncing from '$SOURCE' to '$DEST'"
 
-  rsync -av --delete \
+  rsync $rsyncargs --delete \
       --exclude=*.tif \
       --exclude=*.tiff \
       --exclude=*.TIF \
@@ -30,5 +36,18 @@ check_vars() {
   fi
 }
 
+setup_live_run() {
+  if [[ -z ${LIVE+1} ]]; then
+    LIVE=0
+  fi
+
+  if [[ "$LIVE" != 1 ]]; then
+    LIVE=0
+    echo "Dry run!  Specify LIVE=1 to do a real sync and ingest."
+    echo
+  fi
+}
+
+setup_live_run
 check_vars
 copy_files
