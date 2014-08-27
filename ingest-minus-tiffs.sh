@@ -12,14 +12,14 @@ copy_files() {
     rsyncargs="${rsyncargs}v"
   fi
 
-  echo "rsyncing from '$SOURCE' to '$ORUDIR'"
+  echo "rsyncing from '$SOURCE' to '$DESTORUPATH'"
 
   rsync $rsyncargs --delete \
       --exclude=*.tif \
       --exclude=*.tiff \
       --exclude=*.TIF \
       --exclude=*.TIFF \
-      $SOURCE $ORUDIR
+      $SOURCE $DESTORUPATH
 }
 
 usage() {
@@ -48,12 +48,22 @@ check_vars() {
   # Extract batch name - only works if SOURCE doesn't have a trailing slash
   BATCHNAME=${SOURCE##*/}
 
-  # ORU directory is forced for now
-  ORUDIR=$DEST/oru
+  DESTORUPATH=$DEST/oru/$BATCHNAME/
+  DESTSYMPATH=$DEST/$BATCHNAME
+
+  # Check destination directories
+  if [[ -e $DESTORUPATH ]]; then
+    echo "Destination directory path ($DESTORUPATH) already exists; exiting"
+    exit 1
+  fi
+  if [[ -e $DESTSYMPATH ]]; then
+    echo "Destination symlink path ($DESTSYMPATH) already exists; exiting"
+    exit 1
+  fi
 }
 
 make_destination_dir() {
-  mkdir -p $DEST
+  mkdir -p $DESTORUPATH
 }
 
 setup_live_run() {
@@ -69,17 +79,10 @@ setup_live_run() {
 }
 
 create_oru_symlink() {
-  local symsource=$ORUDIR/$BATCHNAME
-  local symdest=$DEST/$BATCHNAME
-  CMD="ln -s $symsource $symdest"
+  CMD="ln -s $DESTORUPATH $DESTSYMPATH"
   echo "Creating symlink: '$CMD'"
 
   if [[ "$LIVE" != 1 ]]; then
-    return
-  fi
-
-  if [[ -e $symdest ]]; then
-    echo "Can't create symlink; $symdest already exists!"
     return
   fi
 
