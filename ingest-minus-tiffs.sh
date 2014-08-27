@@ -37,6 +37,10 @@ check_vars() {
   fi
 }
 
+make_destination_dir() {
+  mkdir -p $DEST
+}
+
 setup_live_run() {
   if [[ -z ${LIVE+1} ]]; then
     LIVE=0
@@ -51,6 +55,7 @@ setup_live_run() {
 
 main() {
   check_vars
+  make_destination_dir
   setup_live_run
   copy_files $SOURCE $DEST $LIVE
 }
