@@ -56,7 +56,7 @@ check_vars() {
     echo "Destination batch path ($DESTORUPATH) already exists; exiting"
     exit 1
   fi
-  if [[ -e $DESTSYMPATH ]]; then
+  if [[ -e $DESTSYMPATH || -h $DESTSYMPATH ]]; then
     echo "Destination symlink path ($DESTSYMPATH) already exists; exiting"
     exit 1
   fi
@@ -79,7 +79,7 @@ setup_live_run() {
 }
 
 create_oru_symlink() {
-  CMD="ln -s $DESTORUPATH $DESTSYMPATH"
+  CMD="ln -s ${DESTORUPATH%/} $DESTSYMPATH"
   echo "Creating symlink: '$CMD'"
 
   if [[ "$LIVE" != 1 ]]; then
