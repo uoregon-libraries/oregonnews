@@ -23,10 +23,16 @@ copy_files() {
       $source $dest
 }
 
+usage() {
+  echo "Usage: $0 -s <source directory> [-d <destination directory>] [-l]"
+}
+
 check_vars() {
   # Can't run without a source dir
   if [[ -z ${SOURCE:-} ]]; then
-    echo "SOURCE must be specified"
+    echo "Source directory not specified!"
+    echo
+    usage
     exit 1
   fi
 
@@ -59,5 +65,30 @@ main() {
   setup_live_run
   copy_files $SOURCE $DEST $LIVE
 }
+
+# Param-getting has to happen outside functions :(
+SOURCE=
+DEST=
+LIVE=0
+
+while getopts ":s:d:lh" opt; do
+  case $opt in
+    s)
+      SOURCE=$OPTARG
+      ;;
+
+    d)
+      DEST=$OPTARG
+      ;;
+
+    l)
+      LIVE=1
+      ;;
+
+    h)
+      usage
+      exit 0
+  esac
+done
 
 main
