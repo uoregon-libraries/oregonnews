@@ -35,6 +35,14 @@ check_vars() {
     exit 1
   fi
 
+  # Suffix is required
+  if [[ -z ${SUFFIX:-} ]]; then
+    echo "Suffix not specified!"
+    echo
+    usage
+    exit 1
+  fi
+
   # Without destination, we assume the standard chronam batch dir
   if [[ -z ${DEST:-} ]]; then
     DEST=/opt/chronam/data/batches
@@ -48,8 +56,8 @@ check_vars() {
   # Extract batch name - only works if SOURCE doesn't have a trailing slash
   BATCHNAME=${SOURCE##*/}
 
-  DESTORUPATH=$DEST/oru/$BATCHNAME/
-  DESTSYMPATH=$DEST/$BATCHNAME
+  DESTORUPATH=$DEST/oru/${BATCHNAME}_$SUFFIX
+  DESTSYMPATH=$DEST/${BATCHNAME}_$SUFFIX
 
   # Check destination directories
   if [[ -e $DESTORUPATH ]]; then
@@ -99,14 +107,19 @@ main() {
 
 # Param-getting has to happen outside functions :(
 SOURCE=
+SUFFIX=
 DEST=
 VERBOSE=0
 LIVE=0
 
-while getopts ":s:d:lhv" opt; do
+while getopts ":s:x:d:lhv" opt; do
   case $opt in
     s)
       SOURCE=$OPTARG
+      ;;
+
+    x)
+      SUFFIX=$OPTARG
       ;;
 
     d)
