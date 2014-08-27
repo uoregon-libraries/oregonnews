@@ -2,25 +2,20 @@
 set -eu
 
 copy_files() {
-  # Remove trailing slashes because I like rsyncing with explicit full paths
-  local source=${1%/}
-  local dest=${2%/}
-  local live=$3
-
-  if [[ "$live" == 1 ]]; then
+  if [[ "$LIVE" == 1 ]]; then
     local rsyncargs="-va"
   else
     local rsyncargs="-van"
   fi
 
-  echo "rsyncing from '$source' to '$dest'"
+  echo "rsyncing from '$SOURCE' to '$DEST'"
 
   rsync $rsyncargs --delete \
       --exclude=*.tif \
       --exclude=*.tiff \
       --exclude=*.TIF \
       --exclude=*.TIFF \
-      $source $dest
+      $SOURCE $DEST
 }
 
 usage() {
@@ -41,6 +36,10 @@ check_vars() {
     DEST=/opt/chronam/data/batches
     echo "Defaulting destination to '$DEST'"
   fi
+
+  # Make sure we have no trailing slashes
+  SOURCE=${SOURCE%/}
+  DEST=${DEST%/}
 }
 
 make_destination_dir() {
@@ -63,7 +62,7 @@ main() {
   check_vars
   make_destination_dir
   setup_live_run
-  copy_files $SOURCE $DEST $LIVE
+  copy_files
 }
 
 # Param-getting has to happen outside functions :(
