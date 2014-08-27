@@ -8,14 +8,14 @@ copy_files() {
     local rsyncargs="-van"
   fi
 
-  echo "rsyncing from '$SOURCE' to '$DEST'"
+  echo "rsyncing from '$SOURCE' to '$ORUDIR'"
 
   rsync $rsyncargs --delete \
       --exclude=*.tif \
       --exclude=*.tiff \
       --exclude=*.TIF \
       --exclude=*.TIFF \
-      $SOURCE $DEST
+      $SOURCE $ORUDIR
 }
 
 usage() {
@@ -40,6 +40,12 @@ check_vars() {
   # Make sure we have no trailing slashes
   SOURCE=${SOURCE%/}
   DEST=${DEST%/}
+
+  # Extract batch name - only works if SOURCE doesn't have a trailing slash
+  BATCHNAME=${SOURCE##*/}
+
+  # ORU directory is forced for now
+  ORUDIR=$DEST/oru
 }
 
 make_destination_dir() {
@@ -58,11 +64,30 @@ setup_live_run() {
   fi
 }
 
+create_oru_symlink() {
+  local symsource=$ORUDIR/$BATCHNAME
+  local symdest=$DEST/$BATCHNAME
+  CMD="ln -s $symsource $symdest"
+  echo "Creating symlink: '$CMD'"
+
+  if [[ "$LIVE" != 1 ]]; then
+    return
+  fi
+
+  if [[ -e $symdest ]]; then
+    echo "Can't create symlink; $symdest already exists!"
+    return
+  fi
+
+  $CMD
+}
+
 main() {
   check_vars
   make_destination_dir
   setup_live_run
   copy_files
+  create_oru_symlink
 }
 
 # Param-getting has to happen outside functions :(
