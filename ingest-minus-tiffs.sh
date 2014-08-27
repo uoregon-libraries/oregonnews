@@ -50,8 +50,8 @@ setup_live_run() {
 }
 
 main() {
-  setup_live_run
   check_vars
+  setup_live_run
   copy_files $SOURCE $DEST $LIVE
 }
 
