@@ -53,7 +53,7 @@ check_vars() {
 
   # Check destination directories
   if [[ -e $DESTORUPATH ]]; then
-    echo "Destination directory path ($DESTORUPATH) already exists; exiting"
+    echo "Destination batch path ($DESTORUPATH) already exists; exiting"
     exit 1
   fi
   if [[ -e $DESTSYMPATH ]]; then
