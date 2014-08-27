@@ -2,10 +2,14 @@
 set -eu
 
 copy_files() {
-  if [[ "$LIVE" == 1 ]]; then
-    local rsyncargs="-va"
-  else
-    local rsyncargs="-van"
+  local rsyncargs="-a"
+
+  if [[ "$LIVE" != 1 ]]; then
+    rsyncargs="${rsyncargs}n"
+  fi
+
+  if [[ "$VERBOSE" == 1 ]]; then
+    rsyncargs="${rsyncargs}v"
   fi
 
   echo "rsyncing from '$SOURCE' to '$ORUDIR'"
@@ -93,9 +97,10 @@ main() {
 # Param-getting has to happen outside functions :(
 SOURCE=
 DEST=
+VERBOSE=0
 LIVE=0
 
-while getopts ":s:d:lh" opt; do
+while getopts ":s:d:lhv" opt; do
   case $opt in
     s)
       SOURCE=$OPTARG
@@ -107,6 +112,10 @@ while getopts ":s:d:lh" opt; do
 
     l)
       LIVE=1
+      ;;
+
+    v)
+      VERBOSE=1
       ;;
 
     h)
