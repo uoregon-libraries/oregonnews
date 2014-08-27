@@ -63,7 +63,7 @@ setup_live_run() {
 
   if [[ "$LIVE" != 1 ]]; then
     LIVE=0
-    echo "Dry run!  Specify LIVE=1 to do a real sync and ingest."
+    echo "Dry run!  Specify -l to do a real sync and ingest."
     echo
   fi
 }
