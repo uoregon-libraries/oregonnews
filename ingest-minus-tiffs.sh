@@ -25,13 +25,13 @@ copy_files() {
 
 check_vars() {
   # Can't run without a source dir
-  if [[ -z "$SOURCE" ]]; then
+  if [[ -z ${SOURCE:-} ]]; then
     echo "SOURCE must be specified"
     exit 1
   fi
 
   # Without destination, we assume the standard chronam batch dir
-  if [[ -z ${DEST+1} ]]; then
+  if [[ -z ${DEST:-} ]]; then
     DEST=/opt/chronam/data/batches
     echo "Defaulting destination to '$DEST'"
   fi
@@ -42,7 +42,7 @@ make_destination_dir() {
 }
 
 setup_live_run() {
-  if [[ -z ${LIVE+1} ]]; then
+  if [[ -z ${LIVE:-} ]]; then
     LIVE=0
   fi
 
