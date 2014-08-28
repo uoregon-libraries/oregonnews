@@ -25,7 +25,7 @@ copy_files() {
 }
 
 usage() {
-  echo "Usage: $0 -s <source directory> -x <suffix> [OPTION]..."
+  echo "Usage: $0 -s <source directory> [OPTION]..."
   echo "Ingest a batch of newspaper assets into chronam."
   echo
   echo "Syncs all non-TIFF files from the source directory, creates the oru/ symlink"
@@ -33,12 +33,12 @@ usage() {
   echo
   echo "Mandatory arguments:"
   echo "  -s <source directory>     Specifies current archive of newspaper images"
-  echo "  -x <suffix>               Indicates destination suffix, usually ver_01,"
-  echo "                            ver_02, or similar"
   echo
   echo "Optional arguments:"
   echo "  -d <destination>          Uses custom destination directory instead of the"
   echo "                            default (/opt/chronam/data/batches)."
+  echo "  -x <suffix>               Indicates destination suffix, usually ver01,"
+  echo "                            ver02, or similar.  Defaults to 'ver01'."
   echo "  -l                        Runs live - for safety, running without -l will"
   echo "                            do a dry run"
   echo "  -v                        Extra verbosity"
@@ -56,10 +56,8 @@ check_vars() {
 
   # Suffix is required
   if [[ -z ${SUFFIX:-} ]]; then
-    echo "Suffix not specified!"
-    echo
-    usage
-    exit 1
+    echo "Suffix not specified, defaulting to 'ver01'"
+    SUFFIX=ver01
   fi
 
   # Without destination, we assume the standard chronam batch dir
