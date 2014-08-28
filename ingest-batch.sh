@@ -19,7 +19,7 @@ copy_files() {
       --exclude=*.tiff \
       --exclude=*.TIF \
       --exclude=*.TIFF \
-      $SOURCE/ $DESTORUPATH"
+      $SOURCE/ $DESTDATAPATH"
   echo $CMD
   $CMD
 }
@@ -75,6 +75,7 @@ check_vars() {
   BATCHNAME=${SOURCE##*/}
 
   DESTORUPATH=$DEST/oru/${BATCHNAME}_$SUFFIX
+  DESTDATAPATH=$DESTORUPATH/data
 }
 
 check_destination() {
