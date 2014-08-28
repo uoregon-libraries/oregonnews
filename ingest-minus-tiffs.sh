@@ -23,7 +23,24 @@ copy_files() {
 }
 
 usage() {
-  echo "Usage: $0 -s <source directory> [-d <destination directory>] [-l]"
+  echo "Usage: $0 -s <source directory> -x <suffix> [OPTION]..."
+  echo "Ingest a batch of newspaper assets into chronam."
+  echo
+  echo "Syncs all non-TIFF files from the source directory, creates the oru/ symlink"
+  echo "magic, and runs the django ingest process"
+  echo
+  echo "Mandatory arguments:"
+  echo "  -s <source directory>     Specifies current archive of newspaper images"
+  echo "  -x <suffix>               Indicates destination suffix, usually ver_01,"
+  echo "                            ver_02, or similar"
+  echo
+  echo "Optional arguments:"
+  echo "  -d <destination>          Uses custom destination directory instead of the"
+  echo "                            default (/opt/chronam/data/batches)."
+  echo "  -l                        Runs live - for safety, running without -l will"
+  echo "                            do a dry run"
+  echo "  -v                        Extra verbosity"
+  echo "  -h                        Show this help"
 }
 
 check_vars() {
