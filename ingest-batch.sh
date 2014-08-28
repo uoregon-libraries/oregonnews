@@ -80,14 +80,17 @@ check_vars() {
 
 check_destination() {
   # -f flag allows directories to exist without being a fatal error
-  EXITCMD="echo ABORTING; exit 1"
+  MSG="ABORTING"
+  CMD="exit 1"
   if [[ "$FORCE" == 1 ]]; then
-    EXITCMD="echo FORCE (-f) specified, continuing"
+    MSG="FORCE (-f) specified, continuing"
+    CMD=":"
   fi
 
   if [[ -e $DESTORUPATH ]]; then
     echo "Destination batch path ($DESTORUPATH) already exists"
-    $EXITCMD
+    echo $MSG
+    $CMD
   fi
 }
 
