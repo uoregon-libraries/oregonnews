@@ -90,7 +90,14 @@ check_vars() {
 }
 
 make_destination_dir() {
-  mkdir -p $DESTORUPATH
+  CMD="mkdir -p $DESTORUPATH"
+  echo $CMD
+
+  if [[ "$LIVE" != 1 ]]; then
+    return
+  fi
+
+  $CMD
 }
 
 setup_live_run() {
