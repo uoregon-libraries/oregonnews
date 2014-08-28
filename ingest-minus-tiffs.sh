@@ -125,8 +125,8 @@ create_oru_symlink() {
 
 main() {
   check_vars
-  make_destination_dir
   setup_live_run
+  make_destination_dir
   copy_files
   create_oru_symlink
 }
