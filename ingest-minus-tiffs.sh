@@ -12,14 +12,16 @@ copy_files() {
     rsyncargs="${rsyncargs}v"
   fi
 
-  echo "rsyncing from '$SOURCE' to '$DESTORUPATH'"
-
-  rsync $rsyncargs --delete \
+  # There's value in running this when not live since rsync has its own dry-run
+  # flag that lets you see the expected outcome
+  CMD="rsync $rsyncargs --delete \
       --exclude=*.tif \
       --exclude=*.tiff \
       --exclude=*.TIF \
       --exclude=*.TIFF \
-      $SOURCE $DESTORUPATH
+      $SOURCE $DESTORUPATH"
+  echo $CMD
+  $CMD
 }
 
 usage() {
@@ -105,7 +107,7 @@ setup_live_run() {
 
 create_oru_symlink() {
   CMD="ln -s ${DESTORUPATH%/} $DESTSYMPATH"
-  echo "Creating symlink: '$CMD'"
+  echo $CMD
 
   if [[ "$LIVE" != 1 ]]; then
     return
