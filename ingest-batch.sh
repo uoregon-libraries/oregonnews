@@ -41,6 +41,8 @@ usage() {
   echo "                            ver02, or similar.  Defaults to 'ver01'."
   echo "  -l                        Runs live - for safety, running without -l will"
   echo "                            do a dry run"
+  echo "  -f                        Forces syncing and ingesting even if the"
+  echo "                            destination directory and/or symlink exist"
   echo "  -v                        Extra verbosity"
   echo "  -h                        Show this help"
 }
@@ -75,15 +77,22 @@ check_vars() {
 
   DESTORUPATH=$DEST/oru/${BATCHNAME}_$SUFFIX
   DESTSYMPATH=$DEST/${BATCHNAME}_$SUFFIX
+}
 
-  # Check destination directories
+check_destination_directories() {
+  # -f flag allows directories to exist without being a fatal error
+  EXITCMD="echo ABORTING; exit 1"
+  if [[ "$FORCE" == 1 ]]; then
+    EXITCMD="echo FORCE (-f) specified, continuing"
+  fi
+
   if [[ -e $DESTORUPATH ]]; then
-    echo "Destination batch path ($DESTORUPATH) already exists; exiting"
-    exit 1
+    echo "Destination batch path ($DESTORUPATH) already exists"
+    $EXITCMD
   fi
   if [[ -e $DESTSYMPATH || -h $DESTSYMPATH ]]; then
-    echo "Destination symlink path ($DESTSYMPATH) already exists; exiting"
-    exit 1
+    echo "Destination symlink path ($DESTSYMPATH) already exists"
+    $EXITCMD
   fi
 }
 
@@ -110,20 +119,24 @@ setup_live_run() {
 }
 
 create_oru_symlink() {
-  CMD="ln -s ${DESTORUPATH%/} $DESTSYMPATH"
-  echo $CMD
+  CMDRM="rm -f $DESTSYMPATH"
+  CMDLINK="ln -s ${DESTORUPATH%/} $DESTSYMPATH"
+  echo $CMDRM
+  echo $CMDLINK
 
   if [[ "$LIVE" != 1 ]]; then
     return
   fi
 
-  $CMD
+  $CMDRM
+  $CMDLINK
 }
 
 main() {
   # Get vars set up, let user know about various defaults being used
-  check_vars
   setup_live_run
+  check_vars
+  check_destination_directories
 
   # Run actual commands - add a blank line for easier reading
   echo
@@ -138,8 +151,9 @@ SUFFIX=
 DEST=
 VERBOSE=0
 LIVE=0
+FORCE=0
 
-while getopts ":s:x:d:lhv" opt; do
+while getopts ":s:x:d:lfhv" opt; do
   case $opt in
     s)
       SOURCE=$OPTARG
@@ -155,6 +169,10 @@ while getopts ":s:x:d:lhv" opt; do
 
     l)
       LIVE=1
+      ;;
+
+    f)
+      FORCE=1
       ;;
 
     v)
