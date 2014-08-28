@@ -105,8 +105,7 @@ setup_live_run() {
 
   if [[ "$LIVE" != 1 ]]; then
     LIVE=0
-    echo "Dry run!  Specify -l to do a real sync and ingest."
-    echo
+    echo "*** Dry run!  Specify -l to do a real sync and ingest."
   fi
 }
 
@@ -122,8 +121,12 @@ create_oru_symlink() {
 }
 
 main() {
+  # Get vars set up, let user know about various defaults being used
   check_vars
   setup_live_run
+
+  # Run actual commands - add a blank line for easier reading
+  echo
   make_destination_dir
   copy_files
   create_oru_symlink
