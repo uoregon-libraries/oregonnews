@@ -28,8 +28,7 @@ usage() {
   echo "Usage: $0 -s <source directory> [OPTION]..."
   echo "Ingest a batch of newspaper assets into chronam."
   echo
-  echo "Syncs all non-TIFF files from the source directory, creates the oru/ symlink"
-  echo "magic, and runs the django ingest process"
+  echo "Syncs all non-TIFF files from the source directory and ingests into chronam"
   echo
   echo "Mandatory arguments:"
   echo "  -s <source directory>     Specifies current archive of newspaper images"
@@ -42,7 +41,7 @@ usage() {
   echo "  -l                        Runs live - for safety, running without -l will"
   echo "                            do a dry run"
   echo "  -f                        Forces syncing and ingesting even if the"
-  echo "                            destination directory and/or symlink exist"
+  echo "                            destination directory exists"
   echo "  -v                        Extra verbosity"
   echo "  -h                        Show this help"
 }
@@ -76,10 +75,9 @@ check_vars() {
   BATCHNAME=${SOURCE##*/}
 
   DESTORUPATH=$DEST/oru/${BATCHNAME}_$SUFFIX
-  DESTSYMPATH=$DEST/${BATCHNAME}_$SUFFIX
 }
 
-check_destination_directories() {
+check_destination() {
   # -f flag allows directories to exist without being a fatal error
   EXITCMD="echo ABORTING; exit 1"
   if [[ "$FORCE" == 1 ]]; then
@@ -88,10 +86,6 @@ check_destination_directories() {
 
   if [[ -e $DESTORUPATH ]]; then
     echo "Destination batch path ($DESTORUPATH) already exists"
-    $EXITCMD
-  fi
-  if [[ -e $DESTSYMPATH || -h $DESTSYMPATH ]]; then
-    echo "Destination symlink path ($DESTSYMPATH) already exists"
     $EXITCMD
   fi
 }
@@ -118,20 +112,6 @@ setup_live_run() {
   fi
 }
 
-create_oru_symlink() {
-  CMDRM="rm -f $DESTSYMPATH"
-  CMDLINK="ln -s ${DESTORUPATH%/} $DESTSYMPATH"
-  echo $CMDRM
-  echo $CMDLINK
-
-  if [[ "$LIVE" != 1 ]]; then
-    return
-  fi
-
-  $CMDRM
-  $CMDLINK
-}
-
 ingest_into_chronam() {
   CMD="source /opt/chronam/ENV/bin/activate"
   echo $CMD
@@ -153,14 +133,13 @@ main() {
   # Get vars set up, let user know about various defaults being used
   setup_live_run
   check_vars
-  check_destination_directories
+  check_destination
 
   # Run actual commands - add a blank line for easier reading
   echo
   make_destination_dir
   copy_files
   ingest_into_chronam
-  create_oru_symlink
 }
 
 # Param-getting has to happen outside functions :(
