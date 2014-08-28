@@ -132,6 +132,23 @@ create_oru_symlink() {
   $CMDLINK
 }
 
+ingest_into_chronam() {
+  CMD="source /opt/chronam/ENV/bin/activate"
+  echo $CMD
+
+  # Allow unset vars, as the virtualenv script uses them heavily
+  set +o nounset
+  $CMD
+  set -o nounset
+
+  CMD="django-admin.py load_batch $DESTORUPATH --settings=chronam.settings"
+  echo $CMD
+
+  if [[ "$LIVE" == 1 ]]; then
+    $CMD
+  fi
+}
+
 main() {
   # Get vars set up, let user know about various defaults being used
   setup_live_run
@@ -142,6 +159,7 @@ main() {
   echo
   make_destination_dir
   copy_files
+  ingest_into_chronam
   create_oru_symlink
 }
 
