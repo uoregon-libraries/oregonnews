@@ -19,7 +19,7 @@ copy_files() {
       --exclude=*.tiff \
       --exclude=*.TIF \
       --exclude=*.TIFF \
-      $SOURCE $DESTORUPATH"
+      $SOURCE/ $DESTORUPATH"
   echo $CMD
   $CMD
 }
