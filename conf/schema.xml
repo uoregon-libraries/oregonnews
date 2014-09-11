@@ -104,7 +104,7 @@
       <field name="lccn" type="string" indexed="true" stored="true"
           required="true" multiValued="false" />
       <field name="language" type="string" indexed="true" stored="true"
-          required="true" multiValued="true" />
+          required="false" multiValued="true" />
       <field name="frequency" type="string" indexed="true" stored="true"
           required="false" multiValued="false" />
       <field name="title" type="text" indexed="true" stored="true"
