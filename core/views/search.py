@@ -6,10 +6,11 @@ from rfc3339 import rfc3339
 from django.db.models import Q
 from django.conf import settings
 from django.core import urlresolvers
-from django.core.paginator import InvalidPage
-from django.shortcuts import render_to_response
+from django.core.paginator import Paginator, InvalidPage
+from django.shortcuts import get_object_or_404, render_to_response
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.template import RequestContext
+from django.template.loader import get_template
 
 from chronam.core import index, models
 from chronam.core import forms
@@ -63,7 +64,7 @@ def search_pages_results(request, view_type='gallery'):
         previous_url = '?' + query.urlencode()
 
     rows = q["rows"] if "rows" in q else 20
-    crumbs = list(settings.BASE_CRUMBS)
+    #crumbs = list(settings.BASE_CRUMBS)
 
     host = request.get_host()
     format = request.GET.get('format', None)
@@ -128,7 +129,7 @@ def search_titles(request):
     page_title = "Search U.S. Newspaper Directory, 1690-Present"
     template = "news_directory.html"
     collapse_search_tab = True
-    crumbs = list(settings.BASE_CRUMBS)
+    #crumbs = list(settings.BASE_CRUMBS)
     return render_to_response(template, dictionary=locals(),
                               context_instance=RequestContext(request))
 
@@ -140,6 +141,14 @@ def search_titles_opensearch(request):
                               mimetype='application/opensearchdescription+xml',
                               dictionary=locals(),
                               context_instance=RequestContext(request))
+#added ls
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def search_pages(request):
+    adv_search_form = forms.AdvSearchPagesForm()
+    search_form = forms.SearchPagesForm()
+    page_title = 'Search Newspaper Pages'
+    return render_to_response('search_pages.html', dictionary=locals(),
+                              context_instance=RequestContext(request))  
 
 
 @cache_page(settings.DEFAULT_TTL_SECONDS)
@@ -213,7 +222,7 @@ def search_pages_navigation(request):
 def search_advanced(request):
     adv_search_form = forms.AdvSearchPagesForm()
     template = "search_advanced.html"
-    crumbs = list(settings.BASE_CRUMBS)
+    #crumbs = list(settings.BASE_CRUMBS)
     page_title = 'Advanced Search'
     return render_to_response(template, dictionary=locals(),
                               context_instance=RequestContext(request))

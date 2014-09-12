@@ -1,11 +1,14 @@
 import logging
 import os.path
+import simplejson as json
 import urlparse
+from urllib import url2pathname
 import urllib2
 from cStringIO import StringIO
 
 from django.conf import settings
-from django.http import Http404, HttpResponse, HttpResponseServerError
+from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseServerError
+from django.core import urlresolvers
 
 from chronam.core import models
 from chronam.core.utils.utils import get_page
@@ -48,7 +51,6 @@ def _get_image(page):
     im = Image.open(stream)
     return im
 
-
 def _get_resized_image(page, width):
     try:
         im = _get_image(page)
@@ -58,7 +60,6 @@ def _get_resized_image(page, width):
     height = int(round(width / float(actual_width) * float(actual_height)))
     im = im.resize((width, height), Image.ANTIALIAS)
     return im
-
 
 def thumbnail(request, lccn, date, edition, sequence):
     page = get_page(lccn, date, edition, sequence)
@@ -70,7 +71,6 @@ def thumbnail(request, lccn, date, edition, sequence):
     im.save(response, "JPEG")
     return response
 
-
 def medium(request, lccn, date, edition, sequence):
     page = get_page(lccn, date, edition, sequence)
     try:
@@ -80,7 +80,6 @@ def medium(request, lccn, date, edition, sequence):
     response = HttpResponse(mimetype="image/jpeg")
     im.save(response, "JPEG")
     return response
-
 
 def page_image(request, lccn, date, edition, sequence, width, height):
     page = get_page(lccn, date, edition, sequence)

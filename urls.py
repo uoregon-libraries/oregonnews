@@ -5,11 +5,14 @@ from django.conf import settings
 from django.utils import cache
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-from chronam.core.views import home, image, search
+from chronam.oregon.views import home, image, search, static
+
+#from chronam.oregon import views
 
 handler404 = 'django.views.defaults.page_not_found'
 handler500 = 'django.views.defaults.server_error'
-
+#from django.contrib import admin
+#admin.autodiscover()
 
 def cache_page(function, ttl):
     def decorated_function(*args, **kwargs):
@@ -21,7 +24,7 @@ def cache_page(function, ttl):
     return decorated_function
 
 urlpatterns = patterns(
-    'chronam.core.views',
+    'chronam.oregon.views',
 
     url(r'^$',
         cache_page(home.home, settings.DEFAULT_TTL_SECONDS),
@@ -73,18 +76,133 @@ urlpatterns = patterns(
 )
 
 urlpatterns += patterns(
-    'chronam.core.views',
+    'chronam.oregon.views',
 
     # TODO: url(r'^.*[A-Z]+.*$', 'lowercase', name="chronam_lowercase"),
 
     url(r'^about/$', 'about', name="chronam_about"),
 
     url(r'^help/$', 'help', name="chronam_help"),
+    
+    
+
+    #Oregon static pages
+ 
+    url(r'^faq/$', 'faq', name="chronam_faq"),
+
+    url(r'^acknow/$', 'acknow', name="chronam_acknow"),
+    
+    url(r'^k12/$', 'k12', name="chronam_k12"),
+
+    
+    #static essay pages
+    
+   url(r'^history/essays_or/$', 'essays_or', name="chronam_essays_or"),
+
+   url(r'^history/astorian/$', 'astorian', name="chronam_astorian"),
+
+   url(r'^history/bakerdemocrat/$', 'bakerdemocrat', name="chronam_bakerdemocrat"),
+
+   url(r'^history/bandonrecorder/$', 'bandonrecorder', name="chronam_bandonrecorder"),
+
+   url(r'^history/bendbulletin/$', 'bendbulletin', name="chronam_bendbulletin"),
+
+   url(r'^history/burnstimes/$', 'burnstimes', name="chronam_burnstimes"),
+
+   url(r'^history/grantcountynews/$', 'grantcountynews', name="chronam_grantcountynews"),
+
+   url(r'^history/coastmail/$', 'coastmail', name="chronam_coastmail"),
+
+   url(r'^history/bohemianugget/$', 'bohemianugget', name="chronam_bohemianugget"),
+
+   url(r'^history/oregonsentinel/$', 'oregonsentinel', name="chronam_oregonsentinel"),
+
+   url(r'^history/kfallsherald/$', 'kfallsherald', name="chronam_kfallsherald"),
+
+   url(r'^history/lagrandeobserver/$', 'lagrandeobserver', name="chronam_lagrandeobserver"),
+
+   url(r'^history/lakecountyexaminer/$', 'lakecountyexaminer', name="chronam_lakecountyexaminer"),
+
+   url(r'^history/madraspioneer/$', 'madraspioneer', name="chronam_madraspioneer"),
+
+   url(r'^history/medfordmail/$', 'medfordmail', name="chronam_medfordmail"),
+
+   url(r'^history/onatarioargus/$', 'ontarioargus', name="chronam_ontarioargus"),
+
+   url(r'^history/oregonfreepress/$', 'oregonfreepress', name="chronam_oregonfreepress"),
+
+   url(r'^history/spectator/$', 'spectator', name="chronam_spectator"),
+
+   url(r'^history/eastoregonian/$', 'eastoregonian', name="chronam_eastoregonian"),
+
+   url(r'^history/newage/$', 'newage', name="chronam_newage"),
+
+   url(r'^history/newnw/$', 'newnw', name="chronam_newnw"),
+
+   url(r'^history/oregonian/$', 'oregonian', name="chronam_oregonian"),
+
+   url(r'^history/stjohnsreview/$', 'stjohnsreview', name="chronam_stjohnsreview"),
+
+   url(r'^history/eaglevalleynews/$', 'eaglevalleynews', name="chronam_eaglevalleynews"),
+
+   url(r'^history/plaindealer/$', 'plaindealer', name="chronam_plaindealer"),
+
+   url(r'^history/capitaljournal/$', 'capitaljournal', name="chronam_capitaljournal"),
+
+   url(r'^history/willfarmer/$', 'willfarmer', name="chronam_willfarmer"),
+
+   url(r'^history/umpquagazette/$', 'umpquagazette', name="chronam_umpquagazette"),
+
+   url(r'^history/springfieldnews/$', 'springfieldnews', name="chronam_springfieldnews"),
+
+   url(r'^history/sumpterminer/$', 'sumpterminer', name="chronam_sumpterminer"),
+
+   url(r'^history/dalleschronicle/$', 'dalleschronicle', name="chronam_dalleschronicle"),
+
+   url(r'^history/tillamookherald/$', 'tillamookherald', name="chronam_tillamookherald"),
+
+   url(r'^history/oregonscout/$', 'oregonscout', name="chronam_oregonscout"),
+
+   url(r'^history/malheurenterprise/$', 'malheurenterprise', name="chronam_malheurenterprise"),
+   
+   url(r'^history/ashlandtidings/$', 'ashlandtidings', name="chronam_ashlandtidings"),
+   
+   url(r'^history/enterprisenewsrecord/$', 'enterprisenewsrecord', name="chronam_enterprisenewsrecord"),
+   
+   url(r'^history/roguerivercourier/$', 'roguerivercourier', name="chronam_roguerivercourier"),
+   
+   url(r'^history/wallowachieftain/$', 'wallowachieftain', name="chronam_wallowachieftain"),
+   
+   url(r'^history/mist/$', 'mist', name="chronam_mist"),
+   
+   url(r'^history/timesmountaineer/$', 'timesmountaineer', name="chronam_timesmountaineer"),
+   
+   url(r'^history/lincolncountyleader/$', 'lincolncountyleader', name="chronam_lincolncountyleader"),
+   
+   url(r'^history/eugenebroadaxebroadaxetribune/$', 'eugenebroadaxebroadaxetribune', name="chronam_eugenebroadaxebroadaxetribune"),
+   
+   url(r'^history/eugenestaterepublican/$', 'eugenestaterepublican', name="chronam_eugenestaterepublican"),
+
+   url(r'^history/oregoncitycourier/$', 'oregoncitycourier', name="chronam_oregoncitycourier"),
+  
+   url(r'^history/oregoncityoregonargus/$', 'oregoncityoregonargus', name="chronam_oregoncityoregonargus"),
+
+   url(r'^history/portlandwestshoreillustratedwestshore/$', 'portlandwestshoreillustratedwestshore', name="chronam_portlandwestshoreillustratedwestshore"),
+
+   url(r'^history/sthelenscolumbian/$', 'sthelenscolumbian', name="chronam_sthelenscolumbian"),
+   url(r'^history/houltoncolumbiaregister/$', 'houltoncolumbiaregister', name="chronam_houltoncolumbiaregister"),
+
+   url(r'^history/oregoncitypress/$', 'oregoncitypress', name="chronam_oregoncitypress"),
+
+   url(r'^history/oregoncityenterprise/$', 'oregoncityenterprise', name="chronam_oregoncityenterprise"),
+
+   url(r'^history/oregoncityclackamascountyrecord/$','oregoncityclackamascountyrecord', name="chronam_oregoncityclackamascountyrecord"),
+   url(r'^history/lagrandeeveningobserver/$','lagrandeeveningobserver', name="chronam_lagrandeeveningobserver"),
 
     # explainOCR.html
     url(r'^ocr/$', 'ocr', name="chronam_ocr"),
-
     # API docs
+    
     url(r'^about/api/$', 'about_api', name="chronam_about_api"),
 
     # example: /lccn/sn85066387
@@ -197,7 +315,9 @@ urlpatterns += patterns(
         name='chronam_search_pages_results'),
     url(r'^search/pages/results/(?P<view_type>list)/$', 'search_pages_results',
         name='chronam_search_pages_results_list'),
-
+ #added search pages
+    url(r'^search/pages/$', 'search_pages', name='chronam_search_pages'),
+    
     url('search/titles/opensearch.xml', 'search_titles_opensearch',
         name='chronam_search_titles_opensearch'),
     url(r'^search/titles/$', 'search_titles', 
@@ -210,7 +330,7 @@ urlpatterns += patterns(
     url(r'^search/pages/navigation/$', search.search_pages_navigation,
         name='chronam_search_pages_navigation'),
 
-    url(r'^search/advanced/$', search.search_advanced,
+    url(r'^search/advanced/$', 'search.search_advanced',
         name='chronam_search_advanced'),
 
     url(r'^events/$', 'events', name='chronam_events'),
@@ -328,7 +448,7 @@ urlpatterns += patterns(
 # linked-data rdf/atom/json views
 
 urlpatterns += patterns(
-    'chronam.core.views',
+    'chronam.oregon.views',
 
     # newspapers
     url(r'^newspapers.rdf$', 'newspapers_rdf', name="chronam_newspapers_dot_rdf"),
