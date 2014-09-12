@@ -1,0 +1,88 @@
+{% extends 'site_base.html' %}
+
+{% load static from staticfiles %}
+{% block head_content %}{{ block.super }}
+  <link href="{% static 'bootstrap/css/datepicker.css' %}" rel="stylesheet" media="screen">
+{% endblock head_content %}
+{% block subcontent %}
+ <div id="std_box">
+ 	<form action="{% url chronam_search_pages_results %}" method="get" name="fulltext2" id="fulltext2" class="search_adv">
+        <div class="wrapper-search">
+            <!-- city -->
+          <!--  <div class="fl-wrap">
+                <label>Select City(s):</label><br />
+                {{ adv_search_form.city }}
+            </div> -->
+            <!-- newspaper -->
+            <div class="fl-wrap">
+                <label>Select Newspaper(s):</label><br />
+                {{ adv_search_form.lccn }}
+            </div>
+            <!-- date -->
+            <div class="fl-wrap" style="width:320px;">
+                <p class="spec" style="margin-bottom:.5em;"><label>Select Year(s)</label><span class="required">*</span></p>
+                <!-- date -->
+                <p>
+                <fieldset id="select_years">
+                    <label for="radioyear"></label>
+                    <input class="radio" type="radio" id="id_radioyear" name="dateFilterType" value="yearRange" />
+                    <label class="norm">from</label>
+                    {{ search_form.date1 }}
+                    <label class="norm">to</label>
+                    {{ search_form.date2 }} 
+                </fieldset>
+                </p>
+                <br />
+                <span class="label_alt">Or Date Range</span><br />
+                <fieldset id="select_date">
+                    <label for="radiorange"></label>
+                    <input class="radio" type="radio" id="id_radiorange" name="dateFilterType" value="range" />
+                    <label class="norm">from</label>
+                    {{ adv_search_form.date1 }}
+                    <label class="norm">to</label>
+                    {{ adv_search_form.date2 }}
+                </fieldset>
+            </div>
+            <div class="clear-form"><!-- --></div>
+            <p><label>Limit Search:</label>
+            {{ search_form.sequence }} only front page or Specific page {{ adv_search_form.sequence }}</p>
+
+                <span class="label_alt">Enter Search</span><br />
+                <div class="fl-wrap">
+                    <label for="id_ortext" class="norm">...with <strong>any</strong> of the words:</label><br />
+                    {{ adv_search_form.ortext }}
+                </div>
+                <div class="fl-wrap">
+                    <label for="id_andtext" class="norm">...with <strong>all</strong> of the words:</label><br />
+                    {{ adv_search_form.andtext }}
+                </div>
+                <div class="fl-wrap">
+                    <label for="id_phrasetext" class="norm">...with the <strong>phrase</strong>:</label><br />
+                    {{ adv_search_form.phrasetext }}
+                </div>
+                <div class="clear-form-half"><!-- --></div>
+                <div class="fl-wrap">
+                    <label for="id_proxtext" class="norm">...with the words:</label><br />
+                    {{ search_form.proxtext }}
+                    <label for="id_proxdistance" class="norm">within</label>
+                    {{ adv_search_form.proxdistance}}
+                    <span>words of each other</span>
+                </div>
+                <input type="hidden" name="rows" id="rows" value="20" />
+                <input type="hidden" name="searchType" value="advanced" />
+                <div class="clear-form"><!-- --></div>
+            </div><!-- end class:wrapper-search -->
+            <p class="box-btns" style="margin:0;">
+                <button id="adv_reset" type="reset" value="clear">Clear</button>
+                <button type="submit" value="Submit" class="primary">Search</button> &nbsp;  
+            </p>
+        </form>
+
+ </div><!-- end std_box -->
+
+{% endblock %}
+{% block javascript %}
+{{ block.super }}
+<script src="{% static 'js/jquery-ui.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock javascript %}

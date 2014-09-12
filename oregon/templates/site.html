@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+{% load humanize %}
+{% load custom_tags %}
+<html lang="en">
+
+  <head profile="http://dublincore.org/documents/2008/08/04/dc-html/">{% block head_content %}
+    <meta charset="utf-8">
+    <title>{% if page_title %}{{page_title}} « {% endif %}Historic Oregon Newspapers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+      <link title="Historic Oregon Newspapers Page Search" href="{% url chronam_search_pages_opensearch %}" rel="search" type="application/opensearchdescription+xml" />
+        <link title="Historic Oregon Newspapers Title Search" href="{% url chronam_search_titles_opensearch %}" rel="search" type="application/opensearchdescription+xml" />
+
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'bootstrap/css/bootstrap-responsive.css' %}" rel="stylesheet">
+    <link type="text/css" rel="stylesheet"
+              href="{% static 'jquery-ui.css' %}" />
+     <link type="text/css" rel="stylesheet"
+              href="{% static 'base.css' %}" />
+    <style>
+    body {
+	padding-top: 0px; /*was 41px */
+    }
+    @media (max-width: 979px) {
+	body {
+	    padding-top: 0px;
+	}
+	.navbar-fixed-top {
+	    margin-bottom: 0px;
+	}
+    }
+    .breadcrumb {
+        margin: 0 0 5px;
+    }
+    #myCarousel {
+        margin-top: 10px;
+    }
+
+    ul.newspaper_pages li.span4 {
+	height: 450px;
+    }
+    @media (min-width: 1200px) {
+	ul.newspaper_pages li.span4 {
+	    height: 575px;
+	}
+    }
+    @media (max-width: 979px) and (min-width: 768px) {
+	ul.newspaper_pages li.span4 {
+	    height: 350px;
+	}
+    }
+    @media (max-width: 767px) {
+	ul.newspaper_pages li.span4 {
+	    height: auto;
+	}
+    }
+
+    .highlight_words div {
+	margin-top: -3px;
+	padding-top: 3px;
+	margin-bottom: 3px;
+	padding-bottom: 3px;
+	margin-left: -1px;
+	padding-left: 1px;
+	margin-right: 1px;
+	padding-right: 1px;
+	border-width: 1px;
+	border-style: solid;
+	border-color: black;
+	background:transparent; /* fallback for browsers not supporting rgba */
+	background: rgba(255, 0, 0, 0.4);
+    }
+    </style>
+    
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-20248889-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+    
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->{% endblock head_content %}
+  </head>
+  <body>{% block body_content %}
+     <!-- Container -->
+        <div id="container">
+            <a id="skip" href="#skip_menu">skip navigation</a>      
+            <div id="branding">
+                {% block branding %}
+                <h2>Oregon Digital Newspaper Program</h2>
+                <h3>Historic Oregon Newspapers</h3>
+                {% endblock %}
+            </div><!-- end id:branding --> 
+
+            {% block topnav %}
+            <div id="topnav">
+                <ul id="menu">
+                 <li id="odnp_logo" title="Historic Oregon Newspapers"><a href="{% url chronam_home %}"><img src="{% static 'images/or/odnp_h7.png' %}" alt="Historic Oregon Newspapers"/></a></li>
+                </ul>
+            </div>
+            {% endblock %}
+            
+            {% block main_nav %}
+            <div id="main_nav">
+             <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="{% url chronam_newspapers %}">Titles</a></li>
+              <li><a href="{% url chronam_search_pages %}">Search</a></li>
+                <li><a href="{% url chronam_essays_or %}">History</a></li>
+                <li><a href="{% url chronam_k12 %}">K-12 Resources</a></li>
+              <li><a href="{% url chronam_about %}">About</a></li>
+              <li><a href="{% url chronam_faq %}">FAQ</a></li>
+              <li><a href="{% url chronam_acknow %}">Acknowledgements</a></li>
+              <li><a href="{% url chronam_help %}">Help</a></li>
+              <li><a href="mailto:srabun@uoregon.edu">Contact</a></li>
+             
+              </ul>
+            </div><!--end id:main_nav -->
+            {% endblock %}
+    
+    {% block breadcrumbs %}
+            <div id="crumb_nav">
+                <a href="http://libweb.uoregon.edu">University of Oregon Libraries</a><span> &gt; </span>
+                <a href="{% url chronam_home %}">Historic Oregon Newspapers</a>
+                {% for crumb in crumbs %}
+                <span> &gt; </span><a href="{{crumb.href}}">{{crumb.label}}</a>
+                {% endfor %}
+                <!--{% if page_title %}<span> &gt; </span>{{page_title}}{% endif %}-->
+            </div> 
+            {% endblock %}<div id="content"><div id="main_body"> 
+            
+            {% block content %}{% endblock content %}
+            </div></div>
+    {% block footer %}
+            <div id="footer">
+			  <a href="{% url chronam_home %}" ><img src="{% static  'images/or/oregonnews_75.jpg' %}" alt="Historic Oregon Newspapers" /></a> |
+              <a href="http://libweb.uoregon.edu">UO Libraries</a> | <a href="http://www.libweb.uoregon.edu/giving/">Make a Gift</a> |  
+	          <a href="http://libweb.uoregon.edu/diglib/odnp/">Oregon Digital Newspaper Program</a> | <a href="http://odnp.wordpress.com">Blog</a> |
+              <a href="http://odnp.wordpress.com/feed/">RSS</a>
+            </div><!-- end id:footer -->        
+            {% endblock %}
+    
+            </div><!-- end id:container -->{% endblock body_content %}{% block javascript %}
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    {% endblock javascript %}
+<script type="text/javascript">
+(function($) {
+    function initPage() {
+        $('ul.nav > li > a[href="' + document.location.pathname + '"]').parent().addClass('active');
+        console.log("from init on site");   
+    }
+    $(initPage);
+})(jQuery)
+    </script>
+
+  </body>
+</html>

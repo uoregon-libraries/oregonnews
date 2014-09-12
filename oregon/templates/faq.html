@@ -1,0 +1,36 @@
+{% extends 'site_base.html' %}
+
+{% load static from staticfiles %}
+
+{% block box-tabs %}
+{% endblock %}
+<!-- replaced block main_content with block content -->
+{% block subcontent %}
+ <div id="std_box">
+ <p>Historic Oregon Newspapers CONTENT FAQs</p>
+ <p><strong>Why are there no issues past 1922?</strong> </p>
+ <p>Due to copyright limitations, we currently do not offer any newspaper content published after December 31, 1922. Anything published on or before this date is considered to be in the public domain and free for anyone to use. In order to digitize content that was published in 1923 and beyond, special copyright permission must be obtained, which may or may not be possible. Most of our grant funding does not support content beyond the public domain date range. We are open to including content beyond that date range; however, we require both additional funding sources and copyright permission to do so.
+   </p>
+ <p><strong>Why are certain dates missing from digitized titles?
+   </strong></p>
+ <p>Specific dates and date ranges that may be missing from titles that we already have available online indicate that issues from those dates were not present at the time the title was microfilmed. Holes in content may be filled in as missing issues are found, funding permitting.</p>
+ <p><strong>Where is the <em>Oregon Daily Journal</em> (1902-1972)/<em>Oregon Journal</em> (1972-1982)? </strong></p>
+ <p>Portland's <em>Oregon (Daily) Journal </em>(1902-1982) is a popular title in high demand for digitization. However, Oregon newspapers that are digitized through funding from the National Digital Newspaper Program (NDNP) must conform to several specifications, including the requirement that titles be digitized from their microfilm negatives. Unfortunately, the University of Oregon does not possess negatives for the<em> Oregon Daily Journal</em>, nor have we been able to obtain them, so we will not be able to digitize the title using our NDNP funding.  It is possible to digitize the <em>Journal</em> from the microfilm positives that we have. Although this would result in lesser quality images, the content would still be available. In order to do this, outside funding must be raised.  <a href="https://supportuo.uofoundation.org/index.php?Univ_cDesig=OR Digital Newspaper Prg Fund">Make a donation in support of digitizing the <em>Journal</em></a>. Thank you! </p>
+ <p><strong>Where is <em>The Oregonian</em>? </strong></p>
+ <p><em>The Oregonian </em>(1850-1854), <em>The Weekly Oregonian </em>(1854-),  <em>Morning Oregonian</em> (1861-1937), <em>The Sunday Oregonian</em> (1881-current), <em>The Oregonian</em> (1937-current) </p>
+ <p>Limited issues from Portland's <em>Morning Oregonian </em>and <em>The Sunday Oregonian </em>are already available on our website, and we are currently in the process of adding to this content. If you are lucky enough to be a member of the Multnomah County Library, you can use your library card to gain access to a subscription resource of the <em>Oregonian</em>. </p>
+ <p><strong>Where is the <em>Eugene register-guard </em>(1930-1983)/<em>The Register-guard</em> (1983-current)? </strong></p>
+ <p>An archive of past issues from the<em> Register Guard</em> is already available online through the Google News Archive. The Oregon Digital Newspaper Program priortizes content that is not already freely available through other sources.</p>
+ <p><strong>Why are certain titles not found on the Historic Oregon Newspapers website?   </strong></p>
+ <p>Any titles that are not available on our site have not been selected for digitization at this time for one or more of the following reasons:   </p>
+ <ol>
+   <li>funding limitations from grant agencies</li>
+   <li> missing microfilm negatives </li>
+   <li>poor quality and/or condition of microfilm </li>
+   <li> already available elsewhere online </li>
+   <li>published after 1922 </li>
+ </ol>
+ <p>If you'd like to <a href="http://libweb.uoregon.edu/diglib/odnp/recommend.html">recommend titles for digitization</a>, we will forward your recommendation to our advisory board.</p>
+</div><!-- end id:std_box -->
+
+{% endblock %}

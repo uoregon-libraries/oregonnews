@@ -1,0 +1,28 @@
+{% extends "site_base_alt.html" %}
+{% load static from staticfiles %}
+
+{% block subcontent %}
+{% block sub_page_head %}{% endblock sub_page_head %}
+<div id="head_nav">
+<h3>{{page}}</h3>
+<p>Image and text provided by {{issue.batch.awardee.name}}</p>
+    <p>Persistent link: <a href="{{page.url}}">http://{{host}}{{page.url}}</a></p>
+
+    <p>
+    Below is the OCR text representation
+    for this newspapers page. It is also available as 
+    <a href="{% url chronam_page_ocr_txt title.lccn, issue.date_issued, issue.edition, page.sequence %}">plain text</a> as well as 
+    <a href="{% url chronam_page_ocr_xml title.lccn, issue.date_issued, issue.edition, page.sequence %}">XML</a>.</p>
+<p><a href="{% url chronam_ocr %}">What is OCR?</a>
+
+    </p>
+
+</div> 
+
+    <div>
+    {{page.ocr.text|escape}}
+    </div>
+
+    <p>
+{% endblock %}
+

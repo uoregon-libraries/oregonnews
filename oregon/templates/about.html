@@ -1,0 +1,55 @@
+{% extends 'site_base.html' %}
+
+{% load static from staticfiles %}
+
+{% block box-tabs %}
+{% endblock %}
+<!--replaced block main_content with block contet -->
+{% block subcontent %}
+ <div id="std_box">
+ <img src="{% static 'images/or/oregonnews221.png' %}" alt="Historic Oregon Newspapers" align="right" />
+  <p>Welcome to Historic Oregon Newspapers. On this site you can search and access complete content for historic Oregon newspapers that have been digitized as part of the <a href="http://libweb.uoregon.edu/diglib/odnp/">Oregon Digital Newspaper Program (ODNP)</a>. You can also read historic essays about each of the featured newspapers on the History page and view sample lesson plans and other resources to help K-12 Educators integrate historic newspapers into their classroom strategies on the K-12 Resources page. We hope to keep adding new titles and more pages, so please check back periodically for content updates. </p>
+  <p>The ODNP was also created to help facilitate the digitization of Oregon newspapers by outside organizations/individuals to be included in this open state-wide resource for Historic Oregon Newspapers online. If you are interested in participating, please see <a href="http://libweb.uoregon.edu/diglib/odnp/contribute.html">Become a Partner</a> or Contact Us.</p>
+  <p>ODNP is a program of the <a href="http://libweb.uoregon.edu">University of Oregon Libraries</a> with the help of  {% url chronam_acknow as url %}
+    {% ifequal request.path url %}id=&quot;on&quot;{% endifequal %} <a href = "{{ url }}" > major grants and external funding</a>. </p>
+  <h2>Selected Newspaper Pages</h2>
+  <p>Titles are selected by the <a href="http://libweb.uoregon.edu/diglib/odnp/advisoryboard.html">Oregon Digital Newspaper Program Advisory Board</a>.</p>
+  <p>Titles are digitized primarily from microfilm holdings for reasons of efficiency and cost, encouraging selection of technically-suitable film, bibliographic completeness, diversity and
+  &quot;orphaned&quot; newspapers (newspapers that have ceased publication and lack active ownership) in order to decrease the likelihood of duplicative digitization by other organizations.</p>
+  <p>These newspaper materials were digitized to technical specifications designed by the Library of Congress. These specifications include the following basic elements (profiles describing the full set of specifications can be found at <a href="http://www.loc.gov/ndnp/techspecs.html" shape="rect">http://www.loc.gov/ndnp/techspecs.html</a>).</p>
+  <h2>Program Staff</h2>
+  <p>Karen Estlund, Oregon Digital Newspaper Program Director, Head, Digital Scholarship Center, University of Oregon Libraries, 541-346-1854, <a href="mailto:kestlund@uoregon.edu">kestlund@uoregon.edu</a></p>
+  <p>Newspaper History Essays written by: Jonathan Bowers, Patrick Lozar, Sheila Rabun, Isolde Raftery, Daniel Rinn, Jason Stone, and Emily Vance</p>
+  <p><strong>Oregon Digital Newspaper Program Staff</strong>:</p>
+  <ul>
+    <li>Sheila Rabun, ODNP Project Manager</li>
+    <li> Heidi Scheidl, ODNP Microfilm Coordinator</li>
+  </ul>
+  <p><strong>Additional Assistance Provided by:</strong></p>
+  <ul>
+    <li>Lesli Larson, Image Services Coordinator</li>
+    <li>Linda Sato, Programmer</li>
+    <li>Mary Grenci, Serials Team Leader</li>
+    <li>Rebecca Fisher, Serials Cataloging Assistant</li>
+    <li>Tamara Vidos Glencross, Microforms Coordinator</li>
+   </ul>
+  <p><strong>Former Contributors:</strong></p>
+  <ul>
+    <li>Microfilm Collation Assistants: Lisa Berenschot, Sommer Fain, Elizabeth Franklin, Chelsea Jennings, Hannah Kolesar, Erik Maurer, Adam Marcus, Stacer McChesney, Liz Prishchenko, Sheila Rabun, Heidi Scheidl, and Salome Serron</li>
+    <li> ODNP Project Manager: Jason Stone</li>
+    <li> Oregon NDNP Quality Control Specialist: John Taylor</li>
+  </ul>
+<h2>Web Application</h2>
+  <p>The public website is built using the <a href="http://sourceforge.net/projects/loc-ndnp/">LC Newspaper Viewer</a> application developed by the Library of Congress for Chronicling America. For more information, see <a href="http://sourceforge.net/apps/trac/loc-ndnp/wiki" shape="rect">http://sourceforge.net/apps/trac/loc-ndnp/wiki</a>.</p>
+  <h2>Related Resources</h2>
+  <ul>
+    <li><a href="http://chroniclingamerica.loc.gov/">Chronicling America</a></li>
+    <li>University of Oregon Libraries - <a href="http://libweb.uoregon.edu/govdocs/micro/titles.html">Oregon Newspapers on Microfilm by County</a></li>
+    <li><a href="http://libweb.uoregon.edu/diglib/odnp/online.html">Historic Oregon Newspapers Online by County</a></li>
+    <li>University of Oregon Libraries - <a href="http://oregondigital.org">Oregon Digital collections</a></li>
+  </ul>
+  <h2>Rights and Reproductions</h2>
+  <p>All newspaper content on this site published on or before December 31, 1922, is in the public domain. All newspaper content on this site published on or after January 1, 1923, is available to the public through a <a href="http://creativecommons.org/licenses/by-nc/3.0/us/">Creative Commons Attribution-Non Commercial 3.0 United States License.</a> Acknowledgement of the Historic Oregon Newsapapers site is requested. For more information about copyright and historic newspapers, please see our <a href="http://odnp.wordpress.com/2014/04/01/copyright-and-historic-newspapers/">blog</a></p>
+</div><!-- end id:std_box -->
+
+{% endblock %}

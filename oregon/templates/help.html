@@ -1,0 +1,164 @@
+{% extends "site_base.html" %}
+
+{% load static from staticfiles %}
+
+{% block box-tabs %}
+{% endblock %}
+
+{% block subcontent %} <!--replaced main_content with content -->
+ <div id="std_box">
+<ul>
+  <li><a href="#videos" shape="rect">Video Tutorials</a></li>
+  <li><a href="#faq" shape="rect">FAQs</a></li>
+  <li><a href="#how_to_view" shape="rect">How to View</a> </li>
+  <li><a href="#general_searching" shape="rect">General Searching</a></li>
+  <li><a href="#searching_pages" shape="rect">Searching the Newspaper Pages</a></li>
+</ul>
+
+<hr/>
+
+<h4><a id="videos" class="help" shape="rect">Video Tutorials</a></h4>
+<ul>
+<li><a href="https://media.oregonstate.edu/media/t/0_eo9dmtkf"> Intro to Historic Oregon Newspapers Online (OSU Library SkillShare: Oregon Digital Newspaper Project)</a></li>
+</ul>
+<p>
+  Historic Oregon Newspapers utilizes the same newspaper viewing software as the Library of Congress’ <a href="http://chroniclingamerica.loc.gov">Chronicling America website</a>. The following video tutorials were created by the National Digital Newspaper Program in Ohio to help users learn how to navigate the Chronicling America site, but the same functions apply to the Historic Oregon Newspapers website as well:
+</p>
+  <ul>
+    <li><a href="http://www.ohiohistoryhost.org/ohiomemory/odnp/resources/podcasts">Using Chronicling America Podcast Series </a></li>
+   <li><a href="http://www.youtube.com/watch?v=U9AlMLyLMNU&feature=youtu.be">Any vs. All vs. Phrase Searching</a></li>
+   <li><a href="http://www.youtube.com/watch?v=hql8eU72DHE&feature=youtu.be">Searching by a Specific Date</a></li>
+   <li><a href="http://www.youtube.com/watch?v=MEHdafd783Q&feature=youtu.be">Proximity Searching</a></li>
+  </ul>
+
+<h4><a id="faq" class="help" shape="rect">Frequently Asked Questions (FAQs)</a></h4>
+<p><b>Why are only certain titles and dates available?</b></p>
+
+<p>The pages available in Historic Oregon Newspapers are selected by an <a href="http://libweb.uoregon.edu/diglib/odnp/advisoryboard.html">advisory board</a> and limited to where the content is in good enough condition for digitization. Newspaper content must also either be in the public domain or copyright permission received for inclusion in the Historic Oregon Newspapers.</p>
+<p><b>When will more pages be available?</b></p>
+
+<p>Content is added as funding becomes available for digitization.</p>
+
+<p><b>Why does the View Text link on the full Page screen show misspellings and badly-formed words?</b></p>
+
+<p>The View Text option displays machine-generated text that is produced by Optical Character Recognition software. Optical character recognition (OCR) is a fully automated process that converts the visual image of numbers and letters into computer-readable symbols. Computer software can then search the OCR-generated text for words, phrases, numbers, or other characters. However, OCR is not 100 percent accurate.  If the original item has extraneous markings on the page, unusual text styles, or very small fonts, the searchable text OCR generates will contain errors that cannot be corrected by automated means. We do not correct the OCR; however, in the future, we hope to have a mechanism for users to help correct OCR as they are using the collection.</p>
+
+<p>Although errors in the process are unavoidable, OCR is still a powerful tool for making text-based items accessible to searching. For example, important concept words often appear more than once within an article. Therefore, if OCR misreads one instance of a key word in a passage but correctly reads the second instance, the passage will still be found in a full-text search.</p>
+
+<p><b>Why do diacritics and non-English language characters sometimes appear "Romanized" or not in their original alphabets?</b></p>
+
+<p>Until recently, most non-English language characters were difficult to represent in library records and so Romanization - or standard rules for transliterating other alphabets to the Roman alphabet - was used to convey phonetic pronounciations of non-English words.</p>
+
+<p><b>How do I cite or reference newspaper pages for re-use (e.g., in a Web site or other electronic display) or reference (e.g., in a bibliography or journal article)?</b></p>
+
+<p>The site  supports persistent links to
+  newspaper records and pages by providing a predictable
+  URL, displayed in the descriptive information for that object. Using
+  the proposed <a href="http://bitworking.org/projects/URI-Templates/draft-gregorio-uritemplate-00.html" onmouseup="return linkDisclaimer.rewriteAnchor(this);" shape="rect">URI Template</a> syntax the links will use the pattern: 
+</p>
+<ul><li>http://oregonnews.uoregon.edu/lccn/{lccn}/{date}/ed-{edition}/seq-{image sequence}</li></ul>
+
+<p>
+  Where:
+</p>
+<ul><li><i>lccn</i> is the # Library of Congress Control Number for the newspaper</li><li><i>date</i> is the date of the issue, specified as yyyy-mm-dd (e.g. 1902-01-30)</li><li><i>edition</i> is the edition number for that date (e.g. 1)</li><li><i>seq</i> is the image sequence number (e.g. 23) for that issue.</li></ul>
+<p>
+  For example: 
+</p>
+  
+<ul><li>http://oregonnews.uoregon.edu/lccn/sn96088235/1919-12-04/ed-1/seq-1</li></ul>
+
+
+
+
+<h4><a id="how_to_view" class="help" shape="rect"><i>How to View</i></a></h4>
+<p>All images of historic newspaper pages, as well as uncorrected page text, are displayed through your web browser and through Adobe Flash 8.0 or above.  However, the site also contains high-resolution images (JPEG2000) and enhanced text (PDF) that may require special viewers. Most viewers can be downloaded free from vendor sites. The links below explain the various formats used and how to access them.</p>
+
+
+<h4>Download and View Pages Offline</h4>
+<table class="help std" summary="table summarizing document formats, including viewers and samples" border="1"><tr><td rowspan="1" colspan="1">PDF (Portable Document Format, .pdf)</td><td rowspan="1" colspan="1">Used for page images</td><td rowspan="1" colspan="1">
+      <a href="http://www.adobe.com/products/acrobat/readstep2.html" onmouseup="return linkDisclaimer.rewriteAnchor(this);" shape="rect"> Adobe Acrobat Reader</a>
+      
+      <a href="http://www.adobe.com/products/acrobat/alternate.html" onmouseup="return linkDisclaimer.rewriteAnchor(this);" shape="rect"> Adobe text-only download page</a>
+    </td><td rowspan="1" colspan="1">
+      - <a href="http://oregonnews.uoregon.edu/lccn/sn96088235/1919-12-04/ed-1/seq-1.pdf" shape="rect">Sample PDF</a>
+      - <a href="http://oregonnews.uoregon.edu/lccn/sn96088235/1919-12-04/ed-1/seq-1" shape="rect">About this sample</a> 
+  </td></tr><tr><td rowspan="1" colspan="1">JPEG2000(.jp2)</td><td rowspan="1" colspan="1">
+      - Wavelet compression technology
+      
+      - Tiling supports decompression of only that portion of the image requested by the user
+      
+      - Compression ratio is approximately 20:1, depending on image content and color depth
+    </td><td rowspan="1" colspan="1">Windows:
+      - <a href="http://www.ermapper.com" onmouseup="return linkDisclaimer.rewriteAnchor(this);" shape="rect">ER Viewer 7.0</a>
+      - <a href="http://www.kakadusoftware.com" onmouseup="return linkDisclaimer.rewriteAnchor(this);" shape="rect">Kdu_show</a>
+      - <a href="http://www.irfanview.com" onmouseup="return linkDisclaimer.rewriteAnchor(this);" shape="rect">IrfanView with JPEG2000 plug-in</a>
+      
+      OS X:Preview supports baseline JP2 only; commercial software may be needed to view tiled JP2 files.
+    </td><td rowspan="1" colspan="1">
+      - <a href="http://chroniclingamerica.loc.gov/lccn/sn84024441/1901-12-16/ed-1/seq-1.jp2" shape="rect">Sample JPEG2000 page</a>
+      - <a href="http://chroniclingamerica.loc.gov/lccn/sn84024441/1901-12-16/ed-1/seq-1" shape="rect">About this sample</a>
+</td></tr></table>
+
+
+
+<h4><a id="general_searching" class="help" shape="rect"><i>General Searching</i></a></h4>
+<p>Results listed first are most likely to be relevant to your search. Results will appear higher in the list when they contain
+</p>
+<ul><li>more of your search terms;</li><li>repeated search terms;</li><li>search terms that occur near each other;</li></ul>
+
+<p>Your searches will yield better results if you keep the following points in mind:
+</p>
+<ul><li>Common words such as <b>and</b>, <b>not</b>, and <b>the</b> are ignored by the search engine.</li><li>Case of letters is ignored. For example, <b>Civil</b> and <b>civil</b> are treated the same.</li><li>Diacritic characters (accent marks, in non-English text) and other special characters produce inaccurate results, so plain (unaccented) letters should be substituted for letters with diacritics.</li></ul>
+<h4><a id="search_and_browsing_tips" class="help" shape="rect"><i>Search and Browsing Tips</i></a></h4>
+<p>Many browsers have the capability of tabbed browsing, which opens a new pane in the current window, either in the background or the foreground. Users of Chronicling America have reported this as a useful method of navigating through search results by bringing up each result in a new tab. This may be accomplished by clicking with the right-hand mouse button (for Mac, hold down the Command key) and selecting "Open Link in New Tab." </p>
+<p>Search results are displayed on a page that can easily be bookmarked or navigated to via the "Back" button on the browser. Every page in Historic Oregon newspapers can be bookmarked, but only the addresses containing newspaper pages should be treated as canonical for purposes of citations and long-term referrals. These addresses are displayed in the address bar of the browser and no special treatment is required for adding them to a citation database. (Select the "Persistent Link" URL displayed on each newspaper page view to store the link without search text highlighted.)</p>
+<p><b>Search for a Phrase</b></p>
+<p>Put quotation marks around the phrase you are searching.</p>
+<p>When searching for a phrase, enter the words in the order they are most likely to occur.</p>
+<p>The order of search words does not affect the scope of the search results, but it will affect the order of their display.</p>
+
+<p><b>Too Many Results</b> - If a search generates too many results, try using more specific terms.</p>
+
+<p><b>Too Few Results</b>  - If a search generates too few results, try alternate terms or broader subjects.</p>
+
+<p>Because language changes, be sure to use search terms used at the time the materials were created, even if those terms are now obsolete. For example, the following historic terms will produce more results than their modern-day counterparts: </p>
+<table class="help std" border="1" frame="box"><tr><td colspan="2" rowspan="1">Modern Usage vs. Historic Usage comparison table</td></tr><tr><td rowspan="1" colspan="1"><b>Modern Usage</b></td><td rowspan="1" colspan="1"><b>Historic Usage</b></td></tr><tr><td rowspan="1" colspan="1">gas, service station</td><td rowspan="1" colspan="1">filling station</td></tr><tr><td rowspan="1" colspan="1">African American</td><td rowspan="1" colspan="1">Afro American, Negro</td></tr><tr><td rowspan="1" colspan="1">voting rights</td><td rowspan="1" colspan="1">suffrage</td></tr></table>
+
+<p>Use the names of towns, landmarks, bridges, buildings, and other geographic features that were current when the materials you are searching were created.</p>
+
+<p>Matching an exact phrase can be useful for searching place names or when common words have a particular sense used in combination.</p>
+
+<p>For example, the term "normal school" was used in the early twentieth century to describe schools for training teachers. Searching for the exact phrase may eliminate results containing the words "normal" and "school" in unrelated ways.</p>
+
+<p>Note: Some very common words, such as and, of, the, a, and to, are ignored even when matching exact phrases.</p>
+
+
+<h4><a id="searching_pages" class="help" shape="rect"><i>Searching the Newspaper Pages</i></a></h4>
+
+
+<p>Choose Search the Newspaper Pages to find
+</p>
+<ul><li>information on persons, places, or events</li><li>specific topics or news of the day</li><li>concepts or ideas</li><li>unique passages of text, such as the source of a frequently-quoted phrase</li></ul>
+
+<p>To make the most of searching this text, take advantage of the search options provided on the Search page.</p>
+
+<ul><!--<li>To limit your search to particular geographic area, select one or more city.</li>--><li>Limit your search to a particular newspaper, or select several newspapers, picked from the list of titles currently available.</li><li>In addition or alternatively, you can search the entire date range available (default), or select a specific date and limit your search to a specific year, month, or even day, using the begin date and end date lists provided. (Note: selecting the same begin month/day/year and end month/day/year will provide links to every page available for that specific date.)</li><li>In addition or alternatively, enter a specific search term or terms in the Keyword boxes provided. The operators provided will influence the results of your search significantly and can be used in separate searches or in conjunction within a single search.</li></ul>
+
+<p>All pages are digitally scanned - primarily from microfilm, described, and automatically processed for full-text searching through a process called Optical Character Recognition (OCR). This text is organized in normal reading order (by column) and left uncorrected. Search strategies may take this into consideration.</p>
+
+<p>One helpful way to use the full-text search feature is to enter a term or phrase containing many words that characterize the topic you wish to investigate. A full-text search will then retrieve pages with similar passages, displaying small page images with red highlights visibly representing the occurrence of searched terms. This visual interface allows for quick review of full pages and search terms to determine the most useful results to view at full-size. An alternate results list is available through the List View, which will display descriptive textual links to individual pages where search terms will be highlighted in red wherever they occur on the page. </p>
+
+<p>Selecting a search result will bring up the newspaper page, initially displaying the full page. To read or view the page more closely, select the + or - to magnify the image. You can also select the "Draw Zoom Box" icon and use your mouse to select a page area (i.e., depress left mouse button and drag across the page to "draw a box") to magnify. Once the page is magnified, you can use the cursor hand to "grab" and move the image in any direction within the page frame. As the image moves, it will gradually re-draw, allowing you to move across the page at your discretion. To return to the original full-page display, select the square Reset button on the navigation bar.</p>
+
+<p>In addition to the action icons used for the page image, other icons on the bar provide access to alternate digital formats for the newspaper page which can be downloaded. Click on the text link to download these formats.</p>
+
+<p>In some newspapers, issues or pages in logical sequence are not available digitally (usually because images were absent from the microfilm used for digitization). Whenever possible, any known information about these issues is provided, as follows:    
+</p>
+<ul><li>Not digitized, published</li><li>Not digitized, not published</li><li>Not digitized, publishing unknown</li></ul>
+
+<p><a href="#skip_menu">Top</a></p>
+</div><!-- end id:std_box -->
+
+{% endblock %}
+

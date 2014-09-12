@@ -1,0 +1,68 @@
+{% extends 'site_base.html' %}
+
+{% load static from staticfiles %}
+
+{% block subcontent %}
+ <div id="std_box">
+
+<p>Historical essays are being written for newspaper titles in Historic Oregon Newspapers.</p>
+
+<ul>
+    <li><a href="{% url chronam_ashlandtidings %}">Ashland, <em>Ashland Tidings</em> Essay</a></li>
+    <li><a href="{% url chronam_astorian %}">Astoria, <em>The Daily Astorian</em> Essay</a></li>
+    <li><a href="{% url chronam_bandonrecorder %}">Bandon,<em> Recorder</em> Essay</a></li>
+    <li><a href="{% url chronam_bendbulletin %}">Bend, <em>The Bend Bulletin</em> Essay</a></li>
+    <li><a href="{% url chronam_burnstimes %}">Burns, <em>Burns Times-Herald</em> Essay</a></li>
+    <li><a href="{% url chronam_grantcountynews %}">Canyon City, <em>Grant County News</em> Essay</a></li>
+    <li><a href="{% url chronam_coastmail %}">Coos Bay (Marshfield), <em>Coast Mail</em> and <em>Coos Bay Times</em> Essay</a></li>
+    <li><a href="{% url chronam_bohemianugget %}">Cottage Grove, <em>Bohemia Nugget</em> Essay</a></li>
+    <li><a href="{% url chronam_enterprisenewsrecord %}">Enterprise, <em>News Record</em> Essay</a></li>
+    <li><a href="{% url chronam_eugenebroadaxebroadaxetribune %}">Eugene, <em>Broad-Axe Tribune</em> and <em>Broad-Axe</em> Essay</a></li>
+     <li><a href="{% url chronam_eugenestaterepublican %}">Eugene, <em>State Republican</em> Essay</a></li>
+    <li><a href="{% url chronam_roguerivercourier %}">Grants Pass, <em>Rogue River Courier</em> Essay</a></li>
+<li><a href="{% url chronam_houltoncolumbiaregister %}">Houlton, <em>Columbia Register</em> Essay</a></li>    
+<li><a href="{% url chronam_oregonsentinel %}">Jacksonvile, <em>Oregon Sentinel</em> Essay</a></li>
+    <li><a href="{% url chronam_wallowachieftain %}">Joseph, <em>Wallowa Chieftain</em> Essay</a></li>
+    <li><a href="{% url chronam_kfallsherald %}">Klamath Falls, <em>The Evening Herald</em> Essay</a></li> 
+    <!--<li><a href="{% url chronam_lagrandeobserver %}">La Grande, <em>Observor</em> Essay</a></li> -->
+<li><a href="{% url chronam_lagrandeeveningobserver %}">La Grande, <em>Evening Observer</em> Essay</a></li>    
+<li><a href="{% url chronam_lakecountyexaminer %}">Lakeview, <em>Lake County</em> <em>Examiner</em> Essay</a></li>     
+     <li><a href="{% url chronam_madraspioneer %}">Madras, <em>Pioneer</em> Essay</a></li>     
+    <li><a href="{% url chronam_medfordmail %}">Medford, <em>Mail Tribune</em> Essay</a></li> 
+    <li><a href="{% url chronam_ontarioargus %}">Ontario, <em>Ontario Argus</em> Essay</a></li>
+<li><a href="{% url chronam_oregoncityclackamascountyrecord %}">Oregon City, <em>Clackamas County Record</em> Essay</a></li> 
+<li><a href="{% url chronam_oregoncityoregonargus %}">Oregon City, <em>Oregon Argus</em> Essay</a></li>
+ <li><a href="{% url chronam_oregoncitycourier %}">Oregon City, <em>Oregon City Courier</em> Essay</a></li>
+<li><a href="{% url chronam_oregoncityenterprise %}">Oregon City, <em>Oregon City Enterprise</em> Essay</a></li>    
+<li><a href="{% url chronam_oregoncitypress %}">Oregon City, <em>Oregon City Press</em> Essay</a></li>    
+<li><a href="{% url chronam_oregonfreepress %}">Oregon City, <em>Oregon Free Press</em> Essay</a></li> 
+    <li><a href="{% url chronam_spectator %}">Oregon City, <em>Oregon Spectator</em> Essay</a></li>    
+    <li><a href="{% url chronam_eastoregonian %}">Pendleton, <em>Pendleton East Oregonian</em> Essay</a></li>    
+    <li><a href="{% url chronam_newage %}">Portland, <em>New Age</em> Essay</a></li> 
+    <li><a href="{% url chronam_newnw %}">Portland, <em>New Northwest</em> Essay</a></li> 
+    <li><a href="{% url chronam_oregonian %}">Portland, <em>Oregonian</em> Essay</a></li> 
+    <li><a href="{% url chronam_stjohnsreview %}">Portland, <em>St. Johns Review</em> Essay</a></li>
+     <li><a href="{% url chronam_portlandwestshoreillustratedwestshore %}">Portland, <em>West Shore</em> and <em>Illustrated West Shore</em> Essay</a></li> 
+     <li><a href="{% url chronam_eaglevalleynews %}">Richland, <em>Eagle Valley News</em> Essay</a></li> 
+    <li><a href="{% url chronam_plaindealer %}">Roseburg, <em>Plaindealer</em> Essay</a></li>
+     <li><a href="{% url chronam_sthelenscolumbian %}">St. Helens, <em>Columbian</em> Essay</a></li> 
+    <li><a href="{% url chronam_mist %}">St. Helens, <em>St. Helens Mist</em> Essay</a></li>
+    <li><a href="{% url chronam_capitaljournal %}">Salem, <em>Capital Journal</em> Essay</a></li> 
+    <li><a href="{% url chronam_willfarmer %}">Salem, <em>Willamette Farmer</em> Essay</a></li> 
+    <li><a href="{% url chronam_umpquagazette %}">Scottsburg, <em>Umpqua Weekly Gazette</em> Essay</a></li> 
+    <li><a href="{% url chronam_springfieldnews %}">Springfield, <em>Springfield News</em> and <em>Lane County News</em> Essay</a></li> 
+    <li><a href="{% url chronam_sumpterminer %}">Sumpter, <em>Sumpter Miner</em> Essay</a></li> 
+    <li><a href="{% url chronam_dalleschronicle %}">The Dalles, <em>The Dalles Daily Chronicle</em> Essay</a></li> 
+    <li><a href="{% url chronam_timesmountaineer %}">The Dalles, <em>The Dalles Times-Mountaineer</em> Essay</a></li>
+    <li><a href="{% url chronam_tillamookherald %}">Tillamook, <em>Herald</em> Essay</a></li> 
+    <li><a href="{% url chronam_lincolncountyleader %}">Toledo, <em>Lincoln County Leader</em> Essay</a></li>
+    <li><a href="{% url chronam_oregonscout %}">Union, <em>Oregon Scout</em> Essay</a></li> 
+    <li><a href="{% url chronam_malheurenterprise %}">Vale, <em>Malheur Enterprise</em> Essay</a></li> 
+ </ul>
+<p>Turnbull's <em>History of Oregon Newspapers</em> was a valuable source for much of the information. Although considered a major historical resource, it is not without errors. Please contact us if you have additional information on a title or know of any corrections to be made.</p>
+<p>Versions of these essays for titles that are part of the National Digital Newspaper Program are available at <a href="http://chroniclingamerica.loc.gov">Chronicling America</a>. The versions on Historic Oregon Newspapers may be longer versions of those essays and formatted for University of Oregon style guidelines.</p>
+
+<p></p>
+</div><!-- end id:std_box -->
+
+{% endblock %}
