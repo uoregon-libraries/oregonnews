@@ -81,33 +81,6 @@ def medium(request, lccn, date, edition, sequence):
     im.save(response, "JPEG")
     return response
 
-def page_image(request, lccn, date, edition, sequence, width, height):
-    page = get_page(lccn, date, edition, sequence)
-    return page_image_tile(request, lccn, date, edition, sequence,
-                           width, height, 0, 0,
-                           page.jp2_width, page.jp2_length)
-
-
-def page_image_tile(request, lccn, date, edition, sequence,
-                    width, height, x1, y1, x2, y2):
-    page = get_page(lccn, date, edition, sequence)
-    if 'download' in request.GET and request.GET['download']:
-        response = HttpResponse(mimetype="binary/octet-stream")
-    else:
-        response = HttpResponse(mimetype="image/jpeg")
-
-    width, height = int(width), int(height)
-    x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
-    try:
-        im = _get_image(page)
-    except IOError, e:
-        return HttpResponseServerError("Unable to create image tile: %s" % e)
-    c = im.crop((x1, y1, x2, y2))
-    f = c.resize((width, height))
-    f.save(response, "JPEG")
-    return response
-
-
 def image_tile(request, path, width, height, x1, y1, x2, y2):
     if 'download' in request.GET and request.GET['download']:
         response = HttpResponse(mimetype="binary/octet-stream")
