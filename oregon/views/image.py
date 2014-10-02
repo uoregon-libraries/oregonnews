@@ -71,16 +71,6 @@ def thumbnail(request, lccn, date, edition, sequence):
     im.save(response, "JPEG")
     return response
 
-def medium(request, lccn, date, edition, sequence):
-    page = get_page(lccn, date, edition, sequence)
-    try:
-        im = _get_resized_image(page, 550)
-    except IOError, e:
-        return HttpResponseServerError("Unable to create thumbnail: %s" % e)
-    response = HttpResponse(mimetype="image/jpeg")
-    im.save(response, "JPEG")
-    return response
-
 def image_tile(request, path, width, height, x1, y1, x2, y2):
     if 'download' in request.GET and request.GET['download']:
         response = HttpResponse(mimetype="binary/octet-stream")
