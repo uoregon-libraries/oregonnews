@@ -89,6 +89,27 @@ def image_tile(request, path, width, height, x1, y1, x2, y2):
     f.save(response, "JPEG")
     return response
 
+def resize(request, path, width, height):
+    response = HttpResponse(mimetype="image/jpeg")
+
+    width = int(width)
+    height = int(height)
+
+    try:
+        p = os.path.join(settings.BATCH_STORAGE, path)
+        im = Image.open(p)
+    except IOError, e:
+        return HttpResponseServerError("Unable to read image for resizing: %s" % e)
+
+    actual_width, actual_height = im.size
+
+    # Accommodate "fit to width" requests as these are how thumbnails work
+    if height == 0:
+        height = int(round(width / float(actual_width) * float(actual_height)))
+
+    f = im.resize((width, height))
+    f.save(response, "JPEG")
+    return response
 
 @cors
 def coordinates(request, lccn, date, edition, sequence, words=None):
