@@ -32,45 +32,6 @@ else:
         raise Exception("No suitable NativeImage backend found.")
     LOGGER.info("Using NativeImage backend '%s'" % backend)
 
-
-def _get_image(page):
-    if settings.USE_TIFF:
-        filename = page.tiff_filename
-    else:
-        filename = page.jp2_filename
-    if not filename:
-        raise Http404
-    batch = page.issue.batch
-    url = urlparse.urljoin(batch.storage_url, filename)
-    try:
-        fp = urllib2.urlopen(url)
-        stream = StringIO(fp.read())
-    except IOError, e:
-        e.message += " (while trying to open %s)" % url
-        raise e
-    im = Image.open(stream)
-    return im
-
-def _get_resized_image(page, width):
-    try:
-        im = _get_image(page)
-    except IOError, e:
-        return HttpResponseServerError("Unable to create image: %s" % e)
-    actual_width, actual_height = im.size
-    height = int(round(width / float(actual_width) * float(actual_height)))
-    im = im.resize((width, height), Image.ANTIALIAS)
-    return im
-
-def thumbnail(request, lccn, date, edition, sequence):
-    page = get_page(lccn, date, edition, sequence)
-    try:
-        im = _get_resized_image(page, settings.THUMBNAIL_WIDTH)
-    except IOError, e:
-        return HttpResponseServerError("Unable to create thumbnail: %s" % e)
-    response = HttpResponse(mimetype="image/jpeg")
-    im.save(response, "JPEG")
-    return response
-
 def image_tile(request, path, width, height, x1, y1, x2, y2):
     if 'download' in request.GET and request.GET['download']:
         response = HttpResponse(mimetype="binary/octet-stream")

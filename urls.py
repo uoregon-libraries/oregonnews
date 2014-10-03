@@ -40,10 +40,6 @@ urlpatterns = patterns(
         cache_page(home.tabs, settings.DEFAULT_TTL_SECONDS),
         name="chronam_tabs"),
 
-    url(r'^lccn/(?P<lccn>\w+)/(?P<date>\d{4}-\d{2}-\d{2})/ed-(?P<edition>\d+)/seq-(?P<sequence>\d+)/thumbnail.jpg$',
-        cache_page(image.thumbnail, settings.PAGE_IMAGE_TTL_SECONDS),
-        name="chronam_page_thumbnail"),
-
     url(r'^images/resize/(?P<path>.+)/(?P<width>\d+)x(?P<height>\d+)',
         cache_page(image.resize, settings.PAGE_IMAGE_TTL_SECONDS),
         name="chronam_image_resize"),

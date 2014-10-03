@@ -689,12 +689,20 @@ class Page(models.Model):
     @property
     @permalink
     def thumb_url(self):
-        return ('chronam_page_thumbnail', (), self._url_parts())
+        return ('chronam_image_resize', (), {
+            'path': self.relative_image_path,
+            'width': settings.THUMBNAIL_WIDTH,
+            'height': 0
+        })
 
     @property
     @permalink
     def medium_url(self):
-        return ('chronam_page_medium', (), self._url_parts())
+        return ('chronam_image_resize', (), {
+            'path': self.relative_image_path,
+            'width': 550,
+            'height': 0
+        })
 
     @property
     @permalink
