@@ -32,82 +32,6 @@ else:
         raise Exception("No suitable NativeImage backend found.")
     LOGGER.info("Using NativeImage backend '%s'" % backend)
 
-
-def _get_image(page):
-    if settings.USE_TIFF:
-        filename = page.tiff_filename
-    else:
-        filename = page.jp2_filename
-    if not filename:
-        raise Http404
-    batch = page.issue.batch
-    url = urlparse.urljoin(batch.storage_url, filename)
-    try:
-        fp = urllib2.urlopen(url)
-        stream = StringIO(fp.read())
-    except IOError, e:
-        e.message += " (while trying to open %s)" % url
-        raise e
-    im = Image.open(stream)
-    return im
-
-def _get_resized_image(page, width):
-    try:
-        im = _get_image(page)
-    except IOError, e:
-        return HttpResponseServerError("Unable to create image: %s" % e)
-    actual_width, actual_height = im.size
-    height = int(round(width / float(actual_width) * float(actual_height)))
-    im = im.resize((width, height), Image.ANTIALIAS)
-    return im
-
-def thumbnail(request, lccn, date, edition, sequence):
-    page = get_page(lccn, date, edition, sequence)
-    try:
-        im = _get_resized_image(page, settings.THUMBNAIL_WIDTH)
-    except IOError, e:
-        return HttpResponseServerError("Unable to create thumbnail: %s" % e)
-    response = HttpResponse(mimetype="image/jpeg")
-    im.save(response, "JPEG")
-    return response
-
-def medium(request, lccn, date, edition, sequence):
-    page = get_page(lccn, date, edition, sequence)
-    try:
-        im = _get_resized_image(page, 550)
-    except IOError, e:
-        return HttpResponseServerError("Unable to create thumbnail: %s" % e)
-    response = HttpResponse(mimetype="image/jpeg")
-    im.save(response, "JPEG")
-    return response
-
-def page_image(request, lccn, date, edition, sequence, width, height):
-    page = get_page(lccn, date, edition, sequence)
-    return page_image_tile(request, lccn, date, edition, sequence,
-                           width, height, 0, 0,
-                           page.jp2_width, page.jp2_length)
-
-
-def page_image_tile(request, lccn, date, edition, sequence,
-                    width, height, x1, y1, x2, y2):
-    page = get_page(lccn, date, edition, sequence)
-    if 'download' in request.GET and request.GET['download']:
-        response = HttpResponse(mimetype="binary/octet-stream")
-    else:
-        response = HttpResponse(mimetype="image/jpeg")
-
-    width, height = int(width), int(height)
-    x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2)
-    try:
-        im = _get_image(page)
-    except IOError, e:
-        return HttpResponseServerError("Unable to create image tile: %s" % e)
-    c = im.crop((x1, y1, x2, y2))
-    f = c.resize((width, height))
-    f.save(response, "JPEG")
-    return response
-
-
 def image_tile(request, path, width, height, x1, y1, x2, y2):
     if 'download' in request.GET and request.GET['download']:
         response = HttpResponse(mimetype="binary/octet-stream")
@@ -126,6 +50,27 @@ def image_tile(request, path, width, height, x1, y1, x2, y2):
     f.save(response, "JPEG")
     return response
 
+def resize(request, path, width, height):
+    response = HttpResponse(mimetype="image/jpeg")
+
+    width = int(width)
+    height = int(height)
+
+    try:
+        p = os.path.join(settings.BATCH_STORAGE, path)
+        im = Image.open(p)
+    except IOError, e:
+        return HttpResponseServerError("Unable to read image for resizing: %s" % e)
+
+    actual_width, actual_height = im.size
+
+    # Accommodate "fit to width" requests as these are how thumbnails work
+    if height == 0:
+        height = int(round(width / float(actual_width) * float(actual_height)))
+
+    f = im.resize((width, height))
+    f.save(response, "JPEG")
+    return response
 
 @cors
 def coordinates(request, lccn, date, edition, sequence, words=None):

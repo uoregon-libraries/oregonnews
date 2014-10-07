@@ -12,7 +12,7 @@ data-static_url="{% static '' %}images/",
 data-width="{{page.jp2_width}}"
 data-height="{{page.jp2_length}}"
 data-page_url="{% url chronam_page title.lccn,issue.date_issued,issue.edition,page.sequence %}"
-data-tile_url="/images/tiles/{{issue.batch.name}}/data/{{page.tiff_filename}}/"
+data-tile_url="/images/tiles/{{page.relative_image_path}}/"
 data-coordinates_url="{% url chronam_page_coordinates page.issue.title.lccn,page.issue.date_issued,page.issue.edition,page.sequence %}"
 data-navigation_url="{% url chronam_search_pages_navigation %}?"
 ></div>
@@ -43,7 +43,7 @@ data-navigation_url="{% url chronam_search_pages_navigation %}?"
     <link rel="up" href="{{ issue.batch.url }}" />
     {% if page.reel.number %}<link rel="up" href="{% url chronam_reel page.reel.number %}" />{% endif %}
     {% if page.on_flickr %}{% for flickr_url in page.flickr_urls.all %}<link rel="alternate" type="text/html" href="{{ flickr_url.value }}" />{% endfor %}{% endif %}
-    <meta property="og:image" content="http://{{ host }}{% url chronam_page_thumbnail title.lccn,page.issue.date_issued,page.issue.edition,page.sequence %}" />
+    <meta property="og:image" content="http://{{ host }}{{ page.thumb_url }}" />
     <meta property="og:title" content="{{ page_title }}" />
     <meta property="og:description" content="{{ page_title }}, brought to you by {{ image_credit }}, and the National Digital Newspaper Program." />
 

@@ -653,6 +653,18 @@ class Page(models.Model):
         else:
             return None
 
+    @property
+    def relative_image_path(self):
+        """Returns the relative path to the TIFF or JP2 image (relative to the
+        batch directory), depending on settings (USE_TIFF)"""
+        import sys
+        if settings.USE_TIFF:
+            filename = self.tiff_filename
+        else:
+            filename = self.jp2_filename
+        batch = self.issue.batch
+        return os.path.join(batch.name, "data", filename)
+
     def _url_parts(self):
         date = self.issue.date_issued
         return {'lccn': self.issue.title.lccn,
@@ -677,12 +689,20 @@ class Page(models.Model):
     @property
     @permalink
     def thumb_url(self):
-        return ('chronam_page_thumbnail', (), self._url_parts())
+        return ('chronam_image_resize', (), {
+            'path': self.relative_image_path,
+            'width': settings.THUMBNAIL_WIDTH,
+            'height': 0
+        })
 
     @property
     @permalink
     def medium_url(self):
-        return ('chronam_page_medium', (), self._url_parts())
+        return ('chronam_image_resize', (), {
+            'path': self.relative_image_path,
+            'width': 550,
+            'height': 0
+        })
 
     @property
     @permalink
