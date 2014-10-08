@@ -523,27 +523,6 @@ def page_rdf(request, lccn, date, edition, sequence):
 
 
 @cache_page(settings.DEFAULT_TTL_SECONDS)
-def page_print(request, lccn, date, edition, sequence,
-               width, height, x1, y1, x2, y2):
-    page = get_page(lccn, date, edition, sequence)
-    title = get_object_or_404(models.Title, lccn=lccn)
-    issue = page.issue
-    page_title = "%s, %s, %s" % (label(title), label(issue), label(page))
-    crumbs = create_crumbs(title, issue, date, edition, page)
-    host = request.get_host()
-    image_credit = page.issue.batch.awardee.name
-    path_parts = dict(lccn=lccn, date=date, edition=edition,
-                      sequence=sequence,
-                      width=width, height=height,
-                      x1=x1, y1=y1, x2=x2, y2=y2)
-    url = urlresolvers.reverse('chronam_page_print',
-                               kwargs=path_parts)
-
-    return render_to_response('page_print.html', dictionary=locals(),
-                              context_instance=RequestContext(request))
-
-
-@cache_page(settings.DEFAULT_TTL_SECONDS)
 def issues_first_pages(request, lccn, page_number=1):
     title = get_object_or_404(models.Title, lccn=lccn)
     issues = title.issues.all()
