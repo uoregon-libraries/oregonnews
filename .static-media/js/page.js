@@ -202,13 +202,13 @@
     }
 
     function initPage() {
-	page_url = $('#page_data').data("page_url")
-	tile_url = $('#page_data').data("tile_url")
-	coordinates_url = $('#page_data').data("coordinates_url")
-	navigation_url = $('#page_data').data("navigation_url")
-	width = $('#page_data').data("width")
-	height = $('#page_data').data("height")
-	static_url = $('#page_data').data("static_url")
+        page_url = $('#page_data').data("page_url")
+        tile_url = $('#page_data').data("tile_url")
+        coordinates_url = $('#page_data').data("coordinates_url")
+        navigation_url = $('#page_data').data("navigation_url")
+        width = $('#page_data').data("width")
+        height = $('#page_data').data("height")
+        static_url = $('#page_data').data("static_url")
 
         var viewer = null;
         addSearchNav();
