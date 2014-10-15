@@ -17,8 +17,6 @@ usage() {
   echo "                            ver02, or similar.  Defaults to 'ver01'."
   echo "  -l                        Runs live - for safety, running without -l will"
   echo "                            do a dry run"
-  echo "  -f                        Forces syncing and ingesting even if the"
-  echo "                            destination directory exists"
   echo "  -v                        Extra verbosity"
   echo "  -h                        Show this help"
 }
@@ -81,8 +79,7 @@ check_destination_paths() {
   local errors=0
 
   if [[ -e $DEST ]]; then
-    echo "rsync destination ($DEST) already exists"
-    let errors=errors+1
+    echo "WARNING: rsync destination ($DEST) already exists"
   fi
 
   if [[ -e $BATCHORUPATH ]]; then
@@ -102,11 +99,8 @@ check_destination_paths() {
 
   # -f flag allows directories to exist without being a fatal error
   if (( "$errors" > 0 )); then
-    if [[ "$FORCE" == 0 ]]; then
-      echo ABORTING
-      exit 1
-    fi
-    echo "FORCE (-f) specified, continuing"
+    echo ABORTING
+    exit 1
   fi
 }
 
@@ -196,7 +190,6 @@ SUFFIX=
 DEST=
 VERBOSE=0
 LIVE=0
-FORCE=0
 
 # Default locations for symlinking the batch after rsync
 BATCHPATH=/opt/chronam/data/batches
@@ -218,10 +211,6 @@ while getopts ":s:x:d:lfhv" opt; do
 
     l)
       LIVE=1
-      ;;
-
-    f)
-      FORCE=1
       ;;
 
     v)
