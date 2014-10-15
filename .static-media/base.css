@@ -2031,3 +2031,22 @@ border-radius: 0px/*{cornerRadius}*/;  !important
         margin:0;
     }
 }
+
+#clip svg {
+    fill: rgb(0, 102, 204);
+    stroke: rgb(0, 102, 204);
+    stroke-width: 10px;
+    width: 12px;
+    height: 18px;
+}
+
+#clip.disabled svg {
+    fill: #999;
+    stroke: #666;
+}
+
+
+a.disabled, a.disabled:link, a.disabled:hover, a.disabled:focus {
+    pointer-events: none;
+    cursor: default;
+}
