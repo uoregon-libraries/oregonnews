@@ -31,6 +31,11 @@
         }
     }
     
+    function disablePrint(viewer) {
+        $("#clip").attr('href', "");
+        $("#clip").addClass("disabled");
+    }
+
     function resizePrint(viewer) {
         var image = viewer.source;
         var zoom = viewer.viewport.getZoom(); 
@@ -45,6 +50,7 @@
         var d = fitWithinBoundingBox(box, new OpenSeadragon.Point(681, 817));
         var dimension = page_url+'print/image_'+d.x+'x'+d.y+'_from_'+ scaledBox.x+','+scaledBox.y+'_to_'+scaledBox.getBottomRight().x+','+scaledBox.getBottomRight().y;
         $("#clip").attr('href', dimension);
+        $("#clip").removeClass("disabled");
         $(".locshare-print-button").find('a:first').attr('href', dimension).click(function(event) {
             window.open($(this).attr('href'), "print");
         });
@@ -235,6 +241,7 @@
         viewer.addHandler("open", addOverlays);
         viewer.addHandler("open", resizePrint);
         viewer.addHandler("animationfinish", resizePrint);
+        viewer.addHandler("animationstart", disablePrint);
         viewer.addHandler("resize", fullscreen);
 
         if ($.bbq.getState("fullscreen")) {
