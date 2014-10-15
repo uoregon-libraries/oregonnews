@@ -2036,6 +2036,8 @@ border-radius: 0px/*{cornerRadius}*/;  !important
     fill: rgb(0, 102, 204);
     stroke: rgb(0, 102, 204);
     stroke-width: 10px;
+    width: 12px;
+    height: 18px;
 }
 
 #clip.disabled svg {
