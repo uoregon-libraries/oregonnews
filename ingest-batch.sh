@@ -21,6 +21,16 @@ usage() {
   echo "  -h                        Show this help"
 }
 
+if_live() {
+  # Grab all args as a single command
+  local cmd="$@"
+
+  echo $cmd
+  if [[ "$LIVE" == 1 ]]; then
+    $cmd
+  fi
+}
+
 setup_live_run() {
   if [[ -z ${LIVE:-} ]]; then
     LIVE=0
@@ -105,19 +115,13 @@ check_destination_paths() {
 }
 
 make_batch_oru_directory() {
-  CMD="mkdir -p $BATCHORUPATH"
-  echo $CMD
-
-  if [[ "$LIVE" != 1 ]]; then
-    return
-  fi
-
-  $CMD
+  if_live mkdir -p $BATCHORUPATH
 }
 
 copy_files() {
   local rsyncargs="-a"
 
+  # rsync has its own cool dry-run stuff, so we don't use if_live here
   if [[ "$LIVE" != 1 ]]; then
     rsyncargs="${rsyncargs}n"
   fi
@@ -139,34 +143,17 @@ copy_files() {
 }
 
 create_symlinks() {
-  CMD="ln -s $DEST $BATCHDATAPATH"
-  echo $CMD
-  if [[ "$LIVE" == 1 ]]; then
-    $CMD
-  fi
-
-  CMD="ln -s $BATCHORUPATH $BATCHSYMLINK"
-  echo $CMD
-  if [[ "$LIVE" == 1 ]]; then
-    $CMD
-  fi
+  if_live ln -s $DEST $BATCHDATAPATH
+  if_live ln -s $BATCHORUPATH $BATCHSYMLINK
 }
 
 ingest_into_chronam() {
-  CMD="source /opt/chronam/ENV/bin/activate"
-  echo $CMD
-
   # Allow unset vars, as the virtualenv script uses them heavily
   set +o nounset
-  $CMD
+  if_live source /opt/chronam/ENV/bin/activate
   set -o nounset
 
-  CMD="django-admin.py load_batch $BATCHORUPATH --settings=chronam.settings"
-  echo $CMD
-
-  if [[ "$LIVE" == 1 ]]; then
-    $CMD
-  fi
+  if_live django-admin.py load_batch $BATCHORUPATH --settings=chronam.settings
 }
 
 main() {
