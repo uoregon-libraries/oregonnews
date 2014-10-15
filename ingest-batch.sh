@@ -1,6 +1,126 @@
 #!/bin/bash
 set -eu
 
+usage() {
+  echo "Usage: $0 -s <source directory> -d <destination directory> [OPTION]..."
+  echo "Ingest a batch of newspaper assets into chronam."
+  echo
+  echo "Syncs all non-TIFF files from the source directory and ingests into chronam"
+  echo
+  echo "Mandatory arguments:"
+  echo "  -s <source directory>     Specifies the source batch directory"
+  echo "  -d <destination>          Specifies destination directory to rsync non-tiff"
+  echo "                            files (batch name isn't specified here)"
+  echo
+  echo "Optional arguments:"
+  echo "  -x <suffix>               Indicates destination suffix, usually ver01,"
+  echo "                            ver02, or similar.  Defaults to 'ver01'."
+  echo "  -l                        Runs live - for safety, running without -l will"
+  echo "                            do a dry run"
+  echo "  -f                        Forces syncing and ingesting even if the"
+  echo "                            destination directory exists"
+  echo "  -v                        Extra verbosity"
+  echo "  -h                        Show this help"
+}
+
+setup_live_run() {
+  if [[ -z ${LIVE:-} ]]; then
+    LIVE=0
+  fi
+
+  if [[ "$LIVE" != 1 ]]; then
+    LIVE=0
+    echo "*** Dry run!  Specify -l to do a real sync and ingest."
+  fi
+}
+
+check_required_vars() {
+  local errors=0
+
+  # Can't run without a source dir
+  if [[ -z ${SOURCE:-} ]]; then
+    echo "Source directory not specified!"
+    let errors=errors+1
+  fi
+
+  # Can't run without a destination dir
+  if [[ -z ${DEST:-} ]]; then
+    echo "Destination directory not specified!"
+    let errors=errors+1
+  fi
+
+  # If suffix isn't specified, we have to set a default
+  if [[ -z ${SUFFIX:-} ]]; then
+    echo "Suffix not specified, defaulting to 'ver01'"
+    SUFFIX=ver01
+  fi
+
+  if (( errors > 0 )); then
+    echo
+    usage
+    exit 1
+  fi
+}
+
+setup_path_vars() {
+  # Make sure we have no trailing slashes
+  SOURCE=${SOURCE%/}
+  DEST=${DEST%/}
+
+  # Extract batch name - only works if SOURCE doesn't have a trailing slash
+  BATCHNAME=${SOURCE##*/}
+
+  # Figure out chronam paths for creating symlinks and dirs
+  DEST=$DEST/$BATCHNAME
+  BATCHORUPATH=$ORUPATH/${BATCHNAME}_$SUFFIX
+  BATCHSYMLINK=$BATCHPATH/${BATCHNAME}_$SUFFIX
+  BATCHDATAPATH=$BATCHORUPATH/data
+}
+
+check_destination_paths() {
+  local errors=0
+
+  if [[ -e $DEST ]]; then
+    echo "rsync destination ($DEST) already exists"
+    let errors=errors+1
+  fi
+
+  if [[ -e $BATCHORUPATH ]]; then
+    echo "Batch path ($BATCHORUPATH) already exists"
+    let errors=errors+1
+  fi
+
+  if [[ -e $BATCHSYMLINK ]]; then
+    echo "Batch symlink path ($BATCHSYMLINK) already exists"
+    let errors=errors+1
+  fi
+
+  if [[ -e $BATCHDATAPATH ]]; then
+    echo "Batch data path ($BATCHDATAPATH) already exists"
+    let errors=errors+1
+  fi
+
+  # -f flag allows directories to exist without being a fatal error
+  if (( "$errors" > 0 )); then
+    if [[ "$FORCE" == 0 ]]; then
+      echo ABORTING
+      exit 1
+    fi
+    echo "FORCE (-f) specified, continuing"
+  fi
+}
+
+make_batch_oru_directory() {
+  CMD="mkdir -p $BATCHORUPATH"
+  echo $CMD
+
+  if [[ "$LIVE" != 1 ]]; then
+    return
+  fi
+
+  $CMD
+}
+
 copy_files() {
   local rsyncargs="-a"
 
@@ -19,100 +139,22 @@ copy_files() {
       --exclude=*.tiff \
       --exclude=*.TIF \
       --exclude=*.TIFF \
-      $SOURCE/ $DESTDATAPATH"
+      $SOURCE/ $DEST"
   echo $CMD
   $CMD
 }
 
-usage() {
-  echo "Usage: $0 -s <source directory> [OPTION]..."
-  echo "Ingest a batch of newspaper assets into chronam."
-  echo
-  echo "Syncs all non-TIFF files from the source directory and ingests into chronam"
-  echo
-  echo "Mandatory arguments:"
-  echo "  -s <source directory>     Specifies current archive of newspaper images"
-  echo
-  echo "Optional arguments:"
-  echo "  -d <destination>          Uses custom destination directory instead of the"
-  echo "                            default (/opt/chronam/data/batches)."
-  echo "  -x <suffix>               Indicates destination suffix, usually ver01,"
-  echo "                            ver02, or similar.  Defaults to 'ver01'."
-  echo "  -l                        Runs live - for safety, running without -l will"
-  echo "                            do a dry run"
-  echo "  -f                        Forces syncing and ingesting even if the"
-  echo "                            destination directory exists"
-  echo "  -v                        Extra verbosity"
-  echo "  -h                        Show this help"
-}
-
-check_vars() {
-  # Can't run without a source dir
-  if [[ -z ${SOURCE:-} ]]; then
-    echo "Source directory not specified!"
-    echo
-    usage
-    exit 1
-  fi
-
-  # Suffix is required
-  if [[ -z ${SUFFIX:-} ]]; then
-    echo "Suffix not specified, defaulting to 'ver01'"
-    SUFFIX=ver01
-  fi
-
-  # Without destination, we assume the standard chronam batch dir
-  if [[ -z ${DEST:-} ]]; then
-    DEST=/opt/chronam/data/batches
-    echo "Defaulting destination to '$DEST'"
-  fi
-
-  # Make sure we have no trailing slashes
-  SOURCE=${SOURCE%/}
-  DEST=${DEST%/}
-
-  # Extract batch name - only works if SOURCE doesn't have a trailing slash
-  BATCHNAME=${SOURCE##*/}
-
-  DESTORUPATH=$DEST/oru/${BATCHNAME}_$SUFFIX
-  DESTDATAPATH=$DESTORUPATH/data
-}
-
-check_destination() {
-  # -f flag allows directories to exist without being a fatal error
-  MSG="ABORTING"
-  CMD="exit 1"
-  if [[ "$FORCE" == 1 ]]; then
-    MSG="FORCE (-f) specified, continuing"
-    CMD=":"
-  fi
-
-  if [[ -e $DESTORUPATH ]]; then
-    echo "Destination batch path ($DESTORUPATH) already exists"
-    echo $MSG
+create_symlinks() {
+  CMD="ln -s $DEST $BATCHDATAPATH"
+  echo $CMD
+  if [[ "$LIVE" == 1 ]]; then
     $CMD
   fi
-}
 
-make_destination_dir() {
-  CMD="mkdir -p $DESTORUPATH"
+  CMD="ln -s $BATCHORUPATH $BATCHSYMLINK"
   echo $CMD
-
-  if [[ "$LIVE" != 1 ]]; then
-    return
-  fi
-
-  $CMD
-}
-
-setup_live_run() {
-  if [[ -z ${LIVE:-} ]]; then
-    LIVE=0
-  fi
-
-  if [[ "$LIVE" != 1 ]]; then
-    LIVE=0
-    echo "*** Dry run!  Specify -l to do a real sync and ingest."
+  if [[ "$LIVE" == 1 ]]; then
+    $CMD
   fi
 }
 
@@ -125,7 +167,7 @@ ingest_into_chronam() {
   $CMD
   set -o nounset
 
-  CMD="django-admin.py load_batch $DESTORUPATH --settings=chronam.settings"
+  CMD="django-admin.py load_batch $BATCHORUPATH --settings=chronam.settings"
   echo $CMD
 
   if [[ "$LIVE" == 1 ]]; then
@@ -134,15 +176,17 @@ ingest_into_chronam() {
 }
 
 main() {
-  # Get vars set up, let user know about various defaults being used
   setup_live_run
-  check_vars
-  check_destination
+  check_required_vars
+  setup_path_vars
+  check_destination_paths
 
   # Run actual commands - add a blank line for easier reading
   echo
-  make_destination_dir
+
+  make_batch_oru_directory
   copy_files
+  create_symlinks
   ingest_into_chronam
 }
 
@@ -153,6 +197,10 @@ DEST=
 VERBOSE=0
 LIVE=0
 FORCE=0
+
+# Default locations for symlinking the batch after rsync
+BATCHPATH=/opt/chronam/data/batches
+ORUPATH=$BATCHPATH/oru
 
 while getopts ":s:x:d:lfhv" opt; do
   case $opt in
