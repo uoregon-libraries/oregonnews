@@ -187,7 +187,7 @@ LIVE=0
 BATCHPATH=/opt/chronam/data/batches
 ORUPATH=$BATCHPATH/oru
 
-while getopts ":s:x:d:lfhv" opt; do
+while getopts ":s:x:d:lhv" opt; do
   case $opt in
     s)
       SOURCE=$OPTARG
