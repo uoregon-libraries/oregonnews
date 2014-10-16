@@ -156,6 +156,10 @@ ingest_into_chronam() {
   if_live django-admin.py load_batch $BATCHORUPATH --settings=chronam.settings
 }
 
+move_logs() {
+  if_live mv *.log /var/log/chronam/
+}
+
 main() {
   setup_live_run
   check_required_vars
@@ -169,6 +173,7 @@ main() {
   copy_files
   create_symlinks
   ingest_into_chronam
+  move_logs
 }
 
 # Param-getting has to happen outside functions :(
