@@ -144,7 +144,7 @@ div#left_box {
 }
 
 div#left_box img {
-       margin: 10px 0 0 -13px;/*changed from -23px, LS */
+       margin: 10px 0 0 -13px;
        padding: 0;       
 }
 
@@ -820,6 +820,7 @@ line-height: 1.25em;
 #col2_left {
     width:180px;  /**************** LINKED *****************/
     margin-right:10px;
+    
     float:left;
     clear:left;
 }
@@ -831,7 +832,8 @@ line-height: 1.25em;
 /* issues about */
 #col2_about_left {
     width:515px;  /**************** LINKED *****************/
-    margin-right:15px;
+    /* margin-right:15px;  ls */
+    margin-left:15px; /*ls*/
     float:left;
     clear:left;
 }
@@ -1089,12 +1091,12 @@ form.search_adv input.txt {
     font-size:12px;/*ls*/
 }
 form.search_adv select {/*ls*/
-   width:auto;
-   height:auto;
-   padding:1px;
+    width:auto;
+    height:auto;
+    padding:1px;
 }
 form.search_adv input[type=text]{/*ls*/
-    font-size;12px;
+    font-size: 12px;
     padding: 1px;
 }
 form.search_adv input.txt {
@@ -1102,7 +1104,7 @@ form.search_adv input.txt {
 }
 form.search_adv label {
     margin-bottom:5px;
-    display:inline;/*ls*/
+    display:inline; /*ls*/
 }
 form.search_adv .fl-wrap {
     display:inline;
@@ -1123,7 +1125,6 @@ form.search_adv #id_date_from, #id_date_to {/*ls*/
 form.search_adv #id_char_sequence {/*ls*/
     width:40px;
 }
-
 /******************** view options ********************/
 a.view-list,
 a.view-browse {
@@ -1369,6 +1370,10 @@ form.search_directory .clear-form {
 .search_results_ctrl form.jumptopage input {
     font-size:1em;
 }
+
+.search_results_ctrl label { /**ls**/
+  display:inline;
+}
 /*********** for front pages ***********/
 .search_results_ctrl .nav {
     margin-right:12px;
@@ -1446,6 +1451,10 @@ a.pag-gallery {background-image: url(./img-std/i_gallery.gif);}
 .search_results_body .results_nav p.term {
     color:#600;
     margin-bottom: 5px;
+}
+
+.search_results_body label{/**ls**/
+    display:inline;
 }
 table.search_results {
     margin:0 auto;
@@ -1615,8 +1624,9 @@ td.multiple li {
     list-style-type:none; 
 } 
 #id_year{
-  height:auto;
-  width:auto;
+
+    height:auto;
+    width:auto;
 }
 /********************* issues - about *********************/
 .about_issue_right {
@@ -1733,7 +1743,10 @@ table.marc-record span.marc-subfield-value {}
 	display:block;
 	float:left;
 	}
-	#item-ctrl .c-images {background:transparent url(./images/item_dot_divider.png) 100% 50% no-repeat;}
+	#item-ctrl .c-images {background:transparent url(./images/item_dot_divider.png) 100% 50% no-repeat;
+          padding-top:0; /*ls*/
+        }
+     
 	#item-ctrl .c-pages {border-right:1px solid #a7a7a7;}
 	#item-ctrl .c-issues {border-left:1px solid #f0f0f0;border-right:1px solid #a7a7a7;}
 	#item-ctrl .c-view {border-left:1px solid #f0f0f0;}
@@ -1764,11 +1777,14 @@ table.marc-record span.marc-subfield-value {}
 	}
 	#item-ctrl label {
 	font-weight:bold;
-	}
+	display:inline;/*ls*/
+        }
 	#item-ctrl select {
 	font-size:1em;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	vertical-align:middle;
+        height:30px;/*ls*/
+        width:50px;/*ls*/
 	}
 .missing {
 margin: 10px 0 10px 13px;
@@ -2014,4 +2030,23 @@ border-radius: 0px/*{cornerRadius}*/;  !important
         padding:0;
         margin:0;
     }
+}
+
+#clip svg {
+    fill: rgb(0, 102, 204);
+    stroke: rgb(0, 102, 204);
+    stroke-width: 10px;
+    width: 12px;
+    height: 18px;
+}
+
+#clip.disabled svg {
+    fill: #999;
+    stroke: #666;
+}
+
+
+a.disabled, a.disabled:link, a.disabled:hover, a.disabled:focus {
+    pointer-events: none;
+    cursor: default;
 }
