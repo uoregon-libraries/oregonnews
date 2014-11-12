@@ -19,6 +19,25 @@ usage() {
   echo "                            do a dry run"
   echo "  -v                        Extra verbosity"
   echo "  -h                        Show this help"
+  echo
+  echo
+  echo "Examples:"
+  echo
+  echo "    ./ingest-batch.sh -l -s /mnt/newsarchive/batch_oru_xxx -d /mnt/destination"
+  echo
+  echo "This would take a batch called 'xxx', rsync it to /mnt/destination/ (in the"
+  echo "'batch_oru_xxx' sub-directory), and then ingest it into chronam."
+  echo
+  echo
+  echo "    ./ingest-batch.sh -s /mnt/newsarchive/batch_oru_xxx -d /mnt/destination"
+  echo
+  echo "Dry run of the above command (note the lack of a '-l' option)"
+  echo
+  echo
+  echo "    ./ingest-batch.sh -l -s /mnt/newsarchive/batch_oru_xxx -d /mnt/destination -x ver02"
+  echo
+  echo "Same as above, but the internal sub-directory for chronam will have _ver02 for"
+  echo "a suffix, i.e., '/opt/chronam/data/batches/batch_oru_xxx_ver02'."
 }
 
 if_live() {
