@@ -169,8 +169,8 @@ main() {
   # Run actual commands - add a blank line for easier reading
   echo
 
-  make_batch_oru_directory
   copy_files
+  make_batch_oru_directory
   create_symlinks
   ingest_into_chronam
   move_logs
