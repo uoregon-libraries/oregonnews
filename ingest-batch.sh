@@ -93,17 +93,17 @@ check_destination_paths() {
   fi
 
   if [[ -e $BATCHORUPATH ]]; then
-    echo "Batch path ($BATCHORUPATH) already exists"
+    echo "FATAL: Batch path ($BATCHORUPATH) already exists"
     let errors=errors+1
   fi
 
   if [[ -e $BATCHSYMLINK ]]; then
-    echo "Batch symlink path ($BATCHSYMLINK) already exists"
+    echo "FATAL: Batch symlink path ($BATCHSYMLINK) already exists"
     let errors=errors+1
   fi
 
   if [[ -e $BATCHDATAPATH ]]; then
-    echo "Batch data path ($BATCHDATAPATH) already exists"
+    echo "FATAL: Batch data path ($BATCHDATAPATH) already exists"
     let errors=errors+1
   fi
 
