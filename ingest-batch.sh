@@ -167,11 +167,6 @@ create_symlinks() {
 }
 
 ingest_into_chronam() {
-  # Allow unset vars, as the virtualenv script uses them heavily
-  set +o nounset
-  if_live source /opt/chronam/ENV/bin/activate
-  set -o nounset
-
   if_live django-admin.py load_batch $BATCHORUPATH --settings=chronam.settings
 }
 
@@ -180,6 +175,11 @@ move_logs() {
 }
 
 main() {
+  # Allow unset vars, as the virtualenv script uses them heavily
+  set +o nounset
+  if_live source /opt/chronam/ENV/bin/activate
+  set -o nounset
+
   setup_live_run
   check_required_vars
   setup_path_vars
