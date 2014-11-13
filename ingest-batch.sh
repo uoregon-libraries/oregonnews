@@ -1,4 +1,28 @@
 #!/bin/bash
+
+# Runs ingest (and "reload" via purge + ingest) operations the "oregonnews
+# way".  This script is very specific to our process:
+#
+# - We don't need TIFFs exposed to the web app, so before ingesting we rsync
+#   all files except TIFFs from a network mount
+# - We don't store our JP2s or other files in /opt/chronam/data/batches
+#   directly; we instead store them on another network mount and symlink so
+#   chronam can access them as needed
+# - We use a version of chronam which seems to require a special prefixed
+#   directory, so we end up with /opt/chronam/data/batches/oru in addition to
+#   /opt/chronam/data/batches/batch_oru_xxxxxx_ver01
+# - We always purge the cache after ingest instead of letting it expire on its
+#   own, preferring to have live data immediately
+#
+# That said, this could easily be tweaked for other use cases, and is
+# especially useful for keeping the size of the web-mounted discs at a minimum
+# by skipping TIFFs.
+#
+# This script defaults to a dry run for safety (because, yes, I don't trust
+# myself).  This script uses rsync to copy all files except TIFFs, creates
+# necessary directories / symlinks in /opt/chronam, and runs the django
+# administration task(s) for ingest, purge, and cache purge.
+
 set -eu
 
 usage() {
