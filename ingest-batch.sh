@@ -193,6 +193,10 @@ move_logs() {
   if_live mv *.log /var/log/chronam/
 }
 
+expire_cache() {
+  if_live django-admin.py purge_django_cache --settings=chronam.settings
+}
+
 main() {
   # Allow unset vars, as the virtualenv script uses them heavily
   set +o nounset
@@ -218,6 +222,7 @@ main() {
   create_symlinks
   ingest_into_chronam
   move_logs
+  expire_cache
 }
 
 # Param-getting has to happen outside functions :(
