@@ -15,6 +15,7 @@ usage() {
   echo "Optional arguments:"
   echo "  -x <suffix>               Indicates destination suffix, usually ver01,"
   echo "                            ver02, or similar.  Defaults to 'ver01'."
+  echo "  -p                        Purge the batch before reloading it"
   echo "  -l                        Runs live - for safety, running without -l will"
   echo "                            do a dry run"
   echo "  -v                        Extra verbosity"
@@ -104,6 +105,24 @@ setup_path_vars() {
   BATCHDATAPATH=$BATCHORUPATH/data
 }
 
+# Deletes symlinks and empty directory, and runs django purge task
+purge_batch_dirs_and_data() {
+  # Throw errors if destination *doesn't* exist
+  if [[ ! -e $DEST ]]; then
+    echo "FATAL: rsync destination ($DEST) doesn't exist!  Nothing to purge!"
+    exit 1
+  fi
+
+  # If any of these don't exist, we just ignore it - a batch may need to be
+  # purged due to a bad load that didn't get around to dirs/symlinks
+  if_live rm -f $BATCHSYMLINK
+  if_live rm -f $BATCHDATAPATH
+  if_live rmdir $BATCHORUPATH || true
+
+  # Run the purge script to clean up solr/mysql
+  if_live django-admin.py purge_batch ${BATCHNAME}_$SUFFIX --settings=chronam.settings
+}
+
 check_destination_paths() {
   local errors=0
 
@@ -183,6 +202,12 @@ main() {
   setup_live_run
   check_required_vars
   setup_path_vars
+
+  # Run the purge before the path verification so we only have to branch once
+  if [[ "$PURGE_RELOAD" == 1 ]]; then
+    purge_batch_dirs_and_data
+  fi
+
   check_destination_paths
 
   # Run actual commands - add a blank line for easier reading
@@ -201,12 +226,13 @@ SUFFIX=
 DEST=
 VERBOSE=0
 LIVE=0
+PURGE_RELOAD=0
 
 # Default locations for symlinking the batch after rsync
 BATCHPATH=/opt/chronam/data/batches
 ORUPATH=$BATCHPATH/oru
 
-while getopts ":s:x:d:lhv" opt; do
+while getopts ":s:x:d:plhv" opt; do
   case $opt in
     s)
       SOURCE=$OPTARG
@@ -218,6 +244,10 @@ while getopts ":s:x:d:lhv" opt; do
 
     d)
       DEST=$OPTARG
+      ;;
+
+    p)
+      PURGE_RELOAD=1
       ;;
 
     l)
