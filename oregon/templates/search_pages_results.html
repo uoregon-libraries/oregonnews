@@ -37,11 +37,18 @@ we do the same with the highlights */
 
 function add_highlights(div) {
     var image = div.find(".thumbnail");
+
+    // Don't double-highlight
+    if (image.attr("data-highlight") == "1") {
+      return;
+    }
+
     var id = div.find("input[name='id']").attr("value");
     var words = div.find("input[name='words']").attr("value");
     var width = image.width();
     var height = image.height();
     if (width>100 && height>100) {
+        image.attr("data-highlight", "1");
         $.getJSON('{{script_name}}'+id+'coordinates/', function(all_coordinates) {
             var vScale = height / all_coordinates["height"];
             var hScale = width / all_coordinates["width"];
