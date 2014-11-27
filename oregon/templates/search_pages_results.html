@@ -65,7 +65,7 @@ function add_highlights(div) {
 
 function initHighlights() {
   // add highlights after images load
-  $("img.thumbnail").load(function(i) {
+  $("img.thumbnail").on("load", function(i) {
     var div = $(this).parents("div.highlite");
     add_highlights(div);
   });
