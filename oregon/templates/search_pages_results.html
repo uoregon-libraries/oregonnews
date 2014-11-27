@@ -46,7 +46,9 @@ function add_highlights(div) {
     var words = div.find("input[name='words']").attr("value");
     var width = image.width();
     var height = image.height();
-    if (width>100 && height>100) {
+
+    // Either width or height should be over 100px even for small thumbnails
+    if (width > 100 || height > 100) {
         image.attr("data-highlight", "1");
         $.getJSON('{{script_name}}'+id+'coordinates/', function(all_coordinates) {
             var vScale = height / all_coordinates["height"];
