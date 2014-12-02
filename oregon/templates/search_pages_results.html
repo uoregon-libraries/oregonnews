@@ -30,18 +30,26 @@ jQuery(function($){
 
 var padding = 5;
 
-var offset = 2; /* Think the 'a' tag around the thumbnail has a border
-that shifts the thumbnail down and to the right a couple pixels... so
-we do the same with the highlights */
+// <a> tag is set to a border of 2px and a padding of 4px
+var offset = 6;
 
 
 function add_highlights(div) {
     var image = div.find(".thumbnail");
+
+    // Don't double-highlight
+    if (image.attr("data-highlight") == "1") {
+      return;
+    }
+
     var id = div.find("input[name='id']").attr("value");
     var words = div.find("input[name='words']").attr("value");
     var width = image.width();
     var height = image.height();
-    if (width>0 && height>0) {
+
+    // Either width or height should be over 100px even for small thumbnails
+    if (width > 100 || height > 100) {
+        image.attr("data-highlight", "1");
         $.getJSON('{{script_name}}'+id+'coordinates/', function(all_coordinates) {
             var vScale = height / all_coordinates["height"];
             var hScale = width / all_coordinates["width"];
@@ -65,7 +73,7 @@ function add_highlights(div) {
 
 function initHighlights() {
   // add highlights after images load
-  $("img.thumbnail").load(function(i) {
+  $("img.thumbnail").on("load", function(i) {
     var div = $(this).parents("div.highlite");
     add_highlights(div);
   });
