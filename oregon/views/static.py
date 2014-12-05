@@ -398,4 +398,10 @@ def oregoncityclackamascountyrecord(request):
 def lagrandeeveningobserver(request):
     page_title = "Evening Oberserver"
     return render_to_response('history/lagrandeeveningobserver.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def heppnerherald(request):
+    page_title = "Heppner Herald"
+    return render_to_response('history/heppnerherald.html', dictionary=locals(),
                               context_instance=RequestContext(request))                       
