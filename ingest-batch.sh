@@ -121,10 +121,12 @@ setup_path_vars() {
 
   # Extract batch name - only works if SOURCE doesn't have a trailing slash
   BATCHNAME=${SOURCE##*/}
+  local batchnoprefix=${BATCHNAME#*_}
+  local batch_data_dir_name=${batchnoprefix%_*}
 
   # Figure out chronam paths for creating symlinks and dirs
   DEST=$DEST/$BATCHNAME
-  BATCHORUPATH=$ORUPATH/${BATCHNAME}_$SUFFIX
+  BATCHORUPATH="$BATCHPATH/$batch_data_dir_name/${BATCHNAME}_$SUFFIX"
   BATCHSYMLINK=$BATCHPATH/${BATCHNAME}_$SUFFIX
   BATCHDATAPATH=$BATCHORUPATH/data
 }
@@ -259,7 +261,6 @@ PURGE_RELOAD=0
 
 # Default locations for symlinking the batch after rsync
 BATCHPATH=/opt/chronam/data/batches
-ORUPATH=$BATCHPATH/oru
 
 while getopts ":s:x:d:plhv" opt; do
   case $opt in
