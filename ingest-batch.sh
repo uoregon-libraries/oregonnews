@@ -8,9 +8,15 @@
 # - We don't store our JP2s or other files in /opt/chronam/data/batches
 #   directly; we instead store them on another network mount and symlink so
 #   chronam can access them as needed
-# - We use a version of chronam which seems to require a special prefixed
-#   directory, so we end up with /opt/chronam/data/batches/oru in addition to
-#   /opt/chronam/data/batches/batch_oru_xxxxxx_ver01
+# - We use a version of chronam which seems to require a special subdirectory,
+#   so we end up with two symlinks that may seem a little confusing:
+#   - /opt/chronam/data/batches/[code]/[full batch name]/data, which symlinks
+#     to the rsynced destination directory
+#   - /opt/chronam/data/batches/[full batch name], which symlinks to
+#     /opt/chronam/data/batches/[code]/[full batch name]
+#   - ([code] is the institutional code, such as "oru")
+#   - ([full batch name] is the full name of a batch with the suffix appended,
+#     such as "batch_oru_foo_ver01")
 # - We always purge the cache after ingest instead of letting it expire on its
 #   own, preferring to have live data immediately
 #
