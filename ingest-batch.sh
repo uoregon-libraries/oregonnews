@@ -126,9 +126,9 @@ setup_path_vars() {
 
   # Figure out chronam paths for creating symlinks and dirs
   DEST=$DEST/$BATCHNAME
-  BATCHORUPATH="$BATCHPATH/$batch_data_dir_name/${BATCHNAME}_$SUFFIX"
+  BATCHSUBDIRPATH="$BATCHPATH/$batch_data_dir_name/${BATCHNAME}_$SUFFIX"
   BATCHSYMLINK=$BATCHPATH/${BATCHNAME}_$SUFFIX
-  BATCHDATAPATH=$BATCHORUPATH/data
+  BATCHDATAPATH=$BATCHSUBDIRPATH/data
 }
 
 # Deletes symlinks and empty directory, and runs django purge task
@@ -143,7 +143,7 @@ purge_batch_dirs_and_data() {
   # purged due to a bad load that didn't get around to dirs/symlinks
   if_live rm -f $BATCHSYMLINK
   if_live rm -f $BATCHDATAPATH
-  if_live rmdir $BATCHORUPATH || true
+  if_live rmdir $BATCHSUBDIRPATH || true
 
   # Run the purge script to clean up solr/mysql
   if_live django-admin.py purge_batch ${BATCHNAME}_$SUFFIX --settings=chronam.settings
@@ -156,8 +156,8 @@ check_destination_paths() {
     echo "WARNING: rsync destination ($DEST) already exists"
   fi
 
-  if [[ -e $BATCHORUPATH ]]; then
-    echo "FATAL: Batch path ($BATCHORUPATH) already exists"
+  if [[ -e $BATCHSUBDIRPATH ]]; then
+    echo "FATAL: Batch path ($BATCHSUBDIRPATH) already exists"
     let errors=errors+1
   fi
 
@@ -178,8 +178,8 @@ check_destination_paths() {
   fi
 }
 
-make_batch_oru_directory() {
-  if_live mkdir -p $BATCHORUPATH
+make_batch_subdirectory() {
+  if_live mkdir -p $BATCHSUBDIRPATH
 }
 
 copy_files() {
@@ -208,11 +208,11 @@ copy_files() {
 
 create_symlinks() {
   if_live ln -s $DEST $BATCHDATAPATH
-  if_live ln -s $BATCHORUPATH $BATCHSYMLINK
+  if_live ln -s $BATCHSUBDIRPATH $BATCHSYMLINK
 }
 
 ingest_into_chronam() {
-  if_live django-admin.py load_batch $BATCHORUPATH --settings=chronam.settings
+  if_live django-admin.py load_batch $BATCHSUBDIRPATH --settings=chronam.settings
 }
 
 move_logs() {
@@ -244,7 +244,7 @@ main() {
   echo
 
   copy_files
-  make_batch_oru_directory
+  make_batch_subdirectory
   create_symlinks
   ingest_into_chronam
   move_logs
