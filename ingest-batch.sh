@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Runs ingest (and "reload" via purge + ingest) operations the "oregonnews
-# way".  This script is very specific to our process:
+# Runs ingest (and purge) operations the "oregonnews way".  This script is very
+# specific to our process:
 #
 # - We don't need TIFFs exposed to the web app, so before ingesting we rsync
 #   all files except TIFFs from a network mount
@@ -45,7 +45,7 @@ usage() {
   echo "Optional arguments:"
   echo "  -x <suffix>               Indicates destination suffix, usually ver01,"
   echo "                            ver02, or similar.  Defaults to 'ver01'."
-  echo "  -p                        Purge the batch before reloading it"
+  echo "  -p                        Purge the batch instead of loading it."
   echo "  -l                        Runs live - for safety, running without -l will"
   echo "                            do a dry run"
   echo "  -v                        Extra verbosity"
@@ -239,9 +239,12 @@ main() {
   check_required_vars
   setup_path_vars
 
-  # Run the purge before the path verification so we only have to branch once
-  if [[ "$PURGE_RELOAD" == 1 ]]; then
+  # Run the purge if requested
+  if [[ "$PURGE" == 1 ]]; then
     purge_batch_dirs_and_data
+    move_logs
+    expire_cache
+    return
   fi
 
   check_destination_paths
@@ -263,7 +266,7 @@ SUFFIX=
 DEST=
 VERBOSE=0
 LIVE=0
-PURGE_RELOAD=0
+PURGE=0
 
 # Default locations for symlinking the batch after rsync
 BATCHPATH=/opt/chronam/data/batches
@@ -283,7 +286,7 @@ while getopts ":s:x:d:plhv" opt; do
       ;;
 
     p)
-      PURGE_RELOAD=1
+      PURGE=1
       ;;
 
     l)
