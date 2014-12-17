@@ -137,8 +137,8 @@ setup_path_vars() {
   BATCHDATAPATH=$BATCHSUBDIRPATH/data
 }
 
-# Deletes symlinks and empty directory, and runs django purge task
-purge_batch_dirs_and_data() {
+# Deletes symlinks and empty directory
+purge_batch_dirs() {
   # Throw errors if destination *doesn't* exist
   if [[ ! -e $DEST ]]; then
     echo "FATAL: rsync destination ($DEST) doesn't exist!  Nothing to purge!"
@@ -150,8 +150,10 @@ purge_batch_dirs_and_data() {
   if_live rm -f $BATCHSYMLINK
   if_live rm -f $BATCHDATAPATH
   if_live rmdir $BATCHSUBDIRPATH || true
+}
 
-  # Run the purge script to clean up solr/mysql
+# Runs the purge script to clean up solr/mysql
+purge_from_chronam() {
   if_live django-admin.py purge_batch ${BATCHNAME}_$SUFFIX --settings=chronam.settings
 }
 
@@ -241,7 +243,8 @@ main() {
 
   # Run the purge if requested
   if [[ "$PURGE" == 1 ]]; then
-    purge_batch_dirs_and_data
+    purge_batch_dirs
+    purge_from_chronam
     move_logs
     expire_cache
     return
