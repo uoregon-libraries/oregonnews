@@ -258,9 +258,11 @@ class BatchLoader(object):
             title = Title.objects.get(lccn=lccn)
         except Exception, e:
             try:
+                _logger.info("No title in the database for lccn %s - checking bib storage" % lccn)
                 management.call_command('load_titles', settings.BIB_STORAGE + '%s.xml' % lccn)
                 title = Title.objects.get(lccn=lccn)
             except Exception, e:
+                _logger.info("Still no title in the database for lccn %s - checking LC site" % lccn)
                 management.call_command('load_titles', 'http://chroniclingamerica.loc.gov/lccn/%s/marc.xml' % lccn)
                 title = Title.objects.get(lccn=lccn)
         issue.title = title
