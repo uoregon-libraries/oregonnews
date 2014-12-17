@@ -257,12 +257,12 @@ class BatchLoader(object):
         try:
             title = Title.objects.get(lccn=lccn)
         except Exception, e:
-		try:
-            		management.call_command('load_titles',settings.BIB_STORAGE + '%s.xml' % lccn)
-      	    		title = Title.objects.get(lccn=lccn)
-		except Exception, e:
-			management.call_command('load_titles', 'http://chroniclingamerica.loc.gov/lccn/%s/marc.xml' % lccn)
-			title = Title.objects.get(lccn=lccn)
+            try:
+                management.call_command('load_titles', settings.BIB_STORAGE + '%s.xml' % lccn)
+                title = Title.objects.get(lccn=lccn)
+            except Exception, e:
+                management.call_command('load_titles', 'http://chroniclingamerica.loc.gov/lccn/%s/marc.xml' % lccn)
+                title = Title.objects.get(lccn=lccn)
         issue.title = title
 
         issue.batch = self.current_batch
