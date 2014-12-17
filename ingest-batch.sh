@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Runs ingest (and "reload" via purge + ingest) operations the "oregonnews
-# way".  This script is very specific to our process:
+# Runs ingest (and purge) operations the "oregonnews way".  This script is very
+# specific to our process:
 #
 # - We don't need TIFFs exposed to the web app, so before ingesting we rsync
 #   all files except TIFFs from a network mount
@@ -45,7 +45,7 @@ usage() {
   echo "Optional arguments:"
   echo "  -x <suffix>               Indicates destination suffix, usually ver01,"
   echo "                            ver02, or similar.  Defaults to 'ver01'."
-  echo "  -p                        Purge the batch before reloading it"
+  echo "  -p                        Purge the batch instead of loading it."
   echo "  -l                        Runs live - for safety, running without -l will"
   echo "                            do a dry run"
   echo "  -v                        Extra verbosity"
@@ -137,8 +137,8 @@ setup_path_vars() {
   BATCHDATAPATH=$BATCHSUBDIRPATH/data
 }
 
-# Deletes symlinks and empty directory, and runs django purge task
-purge_batch_dirs_and_data() {
+# Deletes symlinks and empty directory
+purge_batch_dirs() {
   # Throw errors if destination *doesn't* exist
   if [[ ! -e $DEST ]]; then
     echo "FATAL: rsync destination ($DEST) doesn't exist!  Nothing to purge!"
@@ -150,8 +150,10 @@ purge_batch_dirs_and_data() {
   if_live rm -f $BATCHSYMLINK
   if_live rm -f $BATCHDATAPATH
   if_live rmdir $BATCHSUBDIRPATH || true
+}
 
-  # Run the purge script to clean up solr/mysql
+# Runs the purge script to clean up solr/mysql
+purge_from_chronam() {
   if_live django-admin.py purge_batch ${BATCHNAME}_$SUFFIX --settings=chronam.settings
 }
 
@@ -218,7 +220,14 @@ create_symlinks() {
 }
 
 ingest_into_chronam() {
-  if_live django-admin.py load_batch $BATCHSUBDIRPATH --settings=chronam.settings
+  if_live django-admin.py load_batch $BATCHSUBDIRPATH --settings=chronam.settings && rc=$? || rc=$?
+
+  if [[ $rc != 0 ]]; then
+    echo "Error trying to ingest batch - attempting to remove residual symlink/dir structure"
+    purge_batch_dirs
+    move_logs
+    exit 1
+  fi
 }
 
 move_logs() {
@@ -239,9 +248,13 @@ main() {
   check_required_vars
   setup_path_vars
 
-  # Run the purge before the path verification so we only have to branch once
-  if [[ "$PURGE_RELOAD" == 1 ]]; then
-    purge_batch_dirs_and_data
+  # Run the purge if requested
+  if [[ "$PURGE" == 1 ]]; then
+    purge_batch_dirs
+    purge_from_chronam
+    move_logs
+    expire_cache
+    return
   fi
 
   check_destination_paths
@@ -263,7 +276,7 @@ SUFFIX=
 DEST=
 VERBOSE=0
 LIVE=0
-PURGE_RELOAD=0
+PURGE=0
 
 # Default locations for symlinking the batch after rsync
 BATCHPATH=/opt/chronam/data/batches
@@ -283,7 +296,7 @@ while getopts ":s:x:d:plhv" opt; do
       ;;
 
     p)
-      PURGE_RELOAD=1
+      PURGE=1
       ;;
 
     l)
