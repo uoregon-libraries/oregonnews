@@ -220,7 +220,14 @@ create_symlinks() {
 }
 
 ingest_into_chronam() {
-  if_live django-admin.py load_batch $BATCHSUBDIRPATH --settings=chronam.settings
+  if_live django-admin.py load_batch $BATCHSUBDIRPATH --settings=chronam.settings && rc=$? || rc=$?
+
+  if [[ $rc != 0 ]]; then
+    echo "Error trying to ingest batch - attempting to remove residual symlink/dir structure"
+    purge_batch_dirs
+    move_logs
+    exit 1
+  fi
 }
 
 move_logs() {
