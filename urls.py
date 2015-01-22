@@ -185,7 +185,8 @@ urlpatterns += patterns(
    url(r'^history/oregoncityclackamascountyrecord/$','oregoncityclackamascountyrecord', name="chronam_oregoncityclackamascountyrecord"),
    url(r'^history/lagrandeeveningobserver/$','lagrandeeveningobserver', name="chronam_lagrandeeveningobserver"),
    url(r'^history/heppnerherald/$','heppnerherald', name="chronam_heppnerherald"),
-
+   url(r'^history/chemawaamerican/$','chemawaamerican', name="chronam_chemawaamerican"),
+   url(r'^history/smokesignals/$','smokesignals', name="chronam_smokesignals"),
     # explainOCR.html
     url(r'^ocr/$', 'ocr', name="chronam_ocr"),
     # API docs
