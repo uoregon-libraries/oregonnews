@@ -521,11 +521,12 @@ def index_pages():
         if row == None:
             break
         page = models.Page.objects.get(id=row[0])
-        _log.info("[%s] indexing page: %s" % (count, page.url))
-        solr.add(**page.solr_doc)
-        count += 1
-        if count % 100 == 0:
-            reset_queries()
+        if page.indexed == True:
+            _log.info("[%s] indexing page: %s" % (count, page.url))
+            solr.add(**page.solr_doc)
+            count += 1
+            if count % 100 == 0:
+                reset_queries()
     solr.commit()
 
 def word_matches_for_page(page_id, words):
