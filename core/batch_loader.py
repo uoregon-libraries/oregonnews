@@ -389,10 +389,15 @@ class BatchLoader(object):
                             break
                 except KeyError, e:
                     _logger.info("Could not determine dimensions of jp2 for issue: %s page: %s... trying harder..." % (page.issue, page))
+                    # UO HACK: we don't use a j2k lib, but we need this feature
+                    # for born-digital items that aren't validated
                     if j2k:
                         width, length = j2k.dimensions(page.jp2_abs_filename)
-                        page.jp2_width = width
-                        page.jp2_length = length
+                    else:
+                        width, length = gmidentify_dimensions(page.jp2_abs_filename)
+
+                    page.jp2_width = width
+                    page.jp2_length = length
                     #raise BatchLoaderException("Could not determine dimensions of jp2 for issue: %s page: %s" % (page.issue, page))
                 if not page.jp2_width:
                     raise BatchLoaderException("No jp2 width for issue: %s page: %s" % (page.issue, page))
@@ -534,6 +539,14 @@ def dmd_mods(doc, dmdid):
     """
     xpath ='.//mets:dmdSec[@ID="%s"]/descendant::mods:mods' % dmdid
     return doc.xpath(xpath, namespaces=ns)[0]
+
+# UO HACK!  No j2k extension, just a raw shell call.  This is bad, but
+# necessary for born-digital items that don't get run through the validator
+def gmidentify_dimensions(path):
+  import subprocess
+  pipe = subprocess.Popen(["gm", "identify", path, "-format", "%w %h"],
+                          stdout = subprocess.PIPE)
+  return pipe.communicate()[0].strip().split(" ")
 
 def get_dimensions(doc, admid):
     """return length, width for an image from techincal metadata with a given
