@@ -24,7 +24,12 @@ from static import about, acknow, about_api, k12, help, faq, essays_or, astorian
     eugenestaterepublican, oregoncitycourier, oregoncityoregonargus, \
     portlandwestshoreillustratedwestshore, sthelenscolumbian, houltoncolumbiaregister, \
     oregoncitypress, oregoncityenterprise, oregoncityclackamascountyrecord, \
-    lagrandeeveningobserver, heppnerherald, chemawaamerican, smokesignals
+    lagrandeeveningobserver, heppnerherald, chemawaamerican, smokesignals, \
+    auroraborealis, athenapress, beavertonowltimes, bentondemocrat, corvallisdailygazettetimes, \
+    corvallisgazette, corvallistimes, crookcountyjournal, douglasindependent, echoregister, \
+    heppnergazette, hillsboroargus, hoodriverglacier, hoodriversun, junctioncitybulletin, \
+    oregonrepublican, oregonunion, polkcountyobserver, roseburgreview, spraycourier, \
+    staterightsdemocrat, toveritar, uniongazette
 
 from reports import reports, batches, batches_atom, batches_json, batch_rdf, \
     batch_json, batch, reels, reel, awardee_rdf, awardees, awardees_json, \

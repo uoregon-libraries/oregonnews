@@ -415,5 +415,120 @@ def smokesignals(request):
     page_title = "Smoke Signals"
     return render_to_response('history/smokesignals.html', dictionary=locals(),
                               context_instance=RequestContext(request))
+che_page(settings.DEFAULT_TTL_SECONDS)
+def auroraborealis(request):
+    page_title = "Aurora Borealis"
+    return render_to_response('history/auroraborealis.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def athenapress(request):
+    page_title = "Athena Press"
+    return render_to_response('history/athenapress.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def beavertonowltimes(request):
+    page_title = "Owl/Beaverton Times"
+    return render_to_response('history/beavertonowltimes.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def bentondemocrat(request):
+    page_title = "Benton Democrat"
+    return render_to_response('history/bentondemocrat.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def corvallisdailygazettetimes(request):
+    page_title = "Daily Gazette-Times"
+    return render_to_response('history/corvallisdailygazettetimes.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def corvallisgazette(request):
+    page_title = "Corvallis Gazette"
+    return render_to_response('history/corvallisgazette.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def corvallistimes(request):
+    page_title = "Corvallis Times/The Gazette-Times"
+    return render_to_response('history/corvallistimes.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def crookcountyjournal(request):
+    page_title = "Crook County Journal"
+    return render_to_response('history/crookcountyjournal.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def douglasindependent(request):
+    page_title = "Douglas Independent"
+    return render_to_response('history/douglasindependent.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def echoregister(request):
+    page_title = "Echo Register"
+    return render_to_response('history/echoregister.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def heppnergazette(request):
+    page_title = "Weekly Gazette/Heppner Gazette/Gazette-Times"
+    return render_to_response('history/heppnergazette.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def hillsboroargus(request):
+    page_title = "Argus/The Hillsboro Argus"
+    return render_to_response('history/hillsboroargus.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def hoodriverglacier(request):
+    page_title = "Hood River Glacier"
+    return render_to_response('history/hoodriverglacier.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def hoodriversun(request):
+    page_title = "Hood River Sun"
+    return render_to_response('history/hoodriversun.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def junctioncitybulletin(request):
+    page_title = "Junction City Bulletin"
+    return render_to_response('history/junctioncitybulletin.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def oregonrepublican(request):
+    page_title = "Oregon Republican/Liberal Republican"
+    return render_to_response('history/oregonrepublican.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def oregonunion(request):
+    page_title = "Oregon Union"
+    return render_to_response('history/oregonunion.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def polkcountyobserver(request):
+    page_title = "Polk County Observer"
+    return render_to_response('history/polkcountyobserver.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def roseburgreview(request):
+    page_title = "Roseburg Review"
+    return render_to_response('history/roseburgreview.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def spraycourier(request):
+    page_title = "Spray Courier"
+    return render_to_response('history/spraycourier.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def staterightsdemocrat(request):
+    page_title = "State Rights Democrat"
+    return render_to_response('history/staterightsdemocrat.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def toveritar(request):
+    page_title = "Toveritar"
+    return render_to_response('history/toveritar.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
+@cache_page(settings.DEFAULT_TTL_SECONDS)
+def uniongazette(request):
+    page_title = "Oregon Union/The Union Gazette/Corvallis Gazette"
+    return render_to_response('history/uniongazette.html', dictionary=locals(),
+                              context_instance=RequestContext(request))
 
                        
