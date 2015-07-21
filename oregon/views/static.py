@@ -415,7 +415,7 @@ def smokesignals(request):
     page_title = "Smoke Signals"
     return render_to_response('history/smokesignals.html', dictionary=locals(),
                               context_instance=RequestContext(request))
-che_page(settings.DEFAULT_TTL_SECONDS)
+@cache_page(settings.DEFAULT_TTL_SECONDS)
 def auroraborealis(request):
     page_title = "Aurora Borealis"
     return render_to_response('history/auroraborealis.html', dictionary=locals(),
