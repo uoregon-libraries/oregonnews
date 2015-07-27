@@ -1713,7 +1713,20 @@ table.marc-record span.marc-subfield-value {}
 .about_pic_box img.loc {
     margin-bottom:0;
 }
-
+/****************k12****************************/
+#k12 {
+    width: 500px;
+    border-color: "lightgrey";
+    border-width: "thin";
+    border-style: "solid";
+    margin-bottom: 10px;
+}
+.announce {
+  line-height:20px;
+  top-margin:30px;
+  color: #951916;
+  font-size:1.25em;
+}
 /********************* item detail page *********************/
 #item-wrapper {
     width: auto;
