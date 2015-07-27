@@ -1720,6 +1720,7 @@ table.marc-record span.marc-subfield-value {}
     border-width: "thin";
     border-style: "solid";
     margin-bottom: 10px;
+    margin-top: 20px;
 }
 .announce {
   line-height:20px;
