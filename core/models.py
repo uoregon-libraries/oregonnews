@@ -483,6 +483,7 @@ class Issue(models.Model):
     title = models.ForeignKey('Title', related_name='issues')
     batch = models.ForeignKey('Batch', related_name='issues')
     created = models.DateTimeField(auto_now_add=True)
+    copyright = models.ForeignKey('Copyright', related_name='issues')
 
     def __unicode__(self):
         return "%s [%s]" % (self.title.display_name, self.date_issued)
@@ -1259,6 +1260,12 @@ class OcrDump(models.Model):
         self.sha1 = sha1.hexdigest()
         return self.sha1
 
+class Copyright(models.Model):
+    uri = models.CharField(max_length=100)
+    label = models.CharField(max_length=250)
+
+    def __unicode__(self):
+        return self.label
 
 def coordinates_path(url_parts):
     url = urlresolvers.reverse('chronam_page', kwargs=url_parts)
