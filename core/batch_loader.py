@@ -28,7 +28,7 @@ except ImportError:
     j2k = None
 
 from chronam.core import models
-from chronam.core.models import Batch, Issue, Title, Awardee, Page, OCR
+from chronam.core.models import Batch, Issue, Title, Awardee, Page, OCR, Copyright
 from chronam.core.models import LoadBatchEvent
 from chronam.core.ocr_extractor import ocr_extractor
 
@@ -268,6 +268,16 @@ class BatchLoader(object):
         issue.title = title
 
         issue.batch = self.current_batch
+
+        copyright_uri = mods.xpath(
+            'string(.//mods:accessCondition)', namespaces=ns)
+        try:
+            copyright = Copyright.objects.get(uri=copyright_uri.strip())
+        except Exception, e:
+            _logger.info("No matching copyright found for uri %s" % copyright_uri)
+            copyright = null
+        issue.copyright = copyright
+
         issue.save()
         _logger.debug("saved issue: %s" % issue.url)
 
