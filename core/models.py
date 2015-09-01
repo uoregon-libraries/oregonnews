@@ -1262,7 +1262,7 @@ class OcrDump(models.Model):
 
 class Copyright(models.Model):
     uri = models.CharField(max_length=100)
-    label = models.CharField(max_length=250)
+    label = models.CharField(max_length=200)
 
     def __unicode__(self):
         return self.label
