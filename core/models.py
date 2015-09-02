@@ -483,7 +483,7 @@ class Issue(models.Model):
     title = models.ForeignKey('Title', related_name='issues')
     batch = models.ForeignKey('Batch', related_name='issues')
     created = models.DateTimeField(auto_now_add=True)
-    copyright = models.ForeignKey('Copyright', related_name='issues')
+    copyright = models.ForeignKey('Copyright', related_name='issues', null=True)
 
     def __unicode__(self):
         return "%s [%s]" % (self.title.display_name, self.date_issued)
