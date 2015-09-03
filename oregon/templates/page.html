@@ -198,8 +198,8 @@ data-navigation_url="{% url chronam_search_pages_navigation %}?"
           {% if page.on_flickr %}
           <li><strong>Flickr Link</strong> <a href="{{ page.first_flickr_url }}">{{ page.first_flickr_url }}</a></li>
           {% endif %}
-          {% if page.issue.copyright %}
-           <li><a href="{{page.issue.copyright.uri}}">{{page.issue.copyright.label}}</a></li>
+          {% if issue.copyright %}
+           <li><a href="{{ issue.copyright.uri }}">{{ issue.copyright.label }}</a></li>
           {% endif %}
         </ul>
       </div>
