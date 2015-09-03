@@ -268,18 +268,16 @@ class BatchLoader(object):
         issue.title = title
 
         issue.batch = self.current_batch
-
-        copyright_uri = mods.xpath(
-            'string(.//mods:accessCondition)', namespaces=ns)
-        try:
+        for mods_ac in mods.xpath('.//mods:accessCondition', namespaces=ns):
+          copyright_uri = mods_ac.xpath('string(.//mods:accessCondition)')
+          try:
             copyright = Copyright.objects.get(uri=copyright_uri.strip())
-        except Exception, e:
+          except Exception, e:
             _logger.info("No matching copyright found for uri %s" % copyright_uri)
-            copyright = null
-        issue.copyright = copyright
-
-        issue.save()
-        _logger.debug("saved issue: %s" % issue.url)
+            copyright = ""
+          issue.copyright = copyright
+          issue.save()
+          _logger.debug("saved issue: %s" % issue.url)
 
         notes = []
         for mods_note in mods.xpath('.//mods:note', namespaces=ns):
