@@ -273,8 +273,10 @@ class BatchLoader(object):
           try:
             copyright = Copyright.objects.get(uri=copyright_uri.strip())
           except Exception, e:
-            _logger.info("No matching copyright found for uri %s" % copyright_uri)
+            _logger.debug("problem with copyright lookup")
+          if copyright = None:
             copyright = ""
+            _logger.info("No matching copyright found for uri %s for issue %s" % (copyright_uri, issue.url))
           issue.copyright = copyright
           issue.save()
           _logger.debug("saved issue: %s" % issue.url)
