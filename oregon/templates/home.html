@@ -10,87 +10,84 @@
 <!--added everything below from old home, replaced block content with block content-->
 {% block subcontent %}
   <div class="summary">
-    
-  <p>Welcome to Historic Oregon Newspapers. On this site you can search and access complete content for historic Oregon newspapers that have been digitized as part of the <a href="http://libweb.uoregon.edu/diglib/odnp/">Oregon Digital Newspaper Program (ODNP)</a>. </p>
-  
-            </div>   <!-- end class:summary --> 
-            <div class="clear"><!-- --></div> 
-            <div id="left_box">
-            <div id="search_home">
-            <h2>Search Newspaper Pages:</h2>
-             <form action="{% url chronam_search_pages_results %}" method="get" name="fulltext" id="fulltext" class="search-pages">
-              <!-- search text field -->
-                {{ search_form.proxtext }}
-                <input type="image"  alt="GO" src="{% static 'images/or/or_btn_go.png' %}" class="ortext-btn" />
-                <input type="hidden" name="dateFilterType" value="range" />
-                <input type="hidden" name="rows" id="rows" value="20" />
-                <div class="pull-right">
-                  <a href="{% url chronam_search_pages %}">Advanced Search</a>
-                </div>
-   
-        </form>
-            </div> <!-- end id:search_home --> 
-             <p align="center"><img src="{% static 'images/or/papertrail.png' %}" alt="image of news paper front covers" />
-            <div id="donate">
-            <p>The Oregon Digital Newspaper Program is committed to providing free online access to historic Oregon newspapers. This is made possible with the <a href="{% url chronam_acknow %}">support</a> of federal and state grants, the UO Libraries, and through private donations.</p><p><a href="http://libweb.uoregon.edu/diglib/odnp/contribute.html">Become a partner or contribute.</a></p> 
-            <p><a href="https://securelb.imodules.com/s/1540/foundation/index.aspx?sid=1540&gid=1&pgid=408&bledit=1&dids=292" ><img src="{% static 'images/or/givebutton-smaller.gif' %}" alt="give now" /></a></p>
-            </div><!-- end id:donate -->
-            </div>    <!-- end id:left_box --> 
-            <div id="right_box">
-<img name="OregonMap_Home" src="{% static 'images/or/OregonMap_Prineville.jpg' %}" width="610" height="462" border="0" id="OregonMap_Home" usemap="#m_Oregon20Map_Home" alt="" /><map name="m_Oregon20Map_Home" id="m_Oregon20Map_Home">
-<map name="m_Oregon20Map_Home" id="m_Oregon20Map_Home"><area shape="rect" coords="75,181,133,198" href="http://odnp.uoregon.edu/about/titles-selected/" alt="Eugene newspapers" title="Eugene newspapers" />
-<area shape="rect" coords="200,62,275,76" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn97071110&lccn=sn83009939&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="The Dalles newspapers" title="The Dalles newspapers" />
-<area shape="rect" coords="427,91,494,107" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=2006260039&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Pendleton newspapers" title="Pendleton newspapers" />
-<area shape="rect" coords="345,93,401,111" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn97071038&lccn=sn97071042&lccn=sn94049698&lccn=sn97071037&lccn=sn97071040&lccn=sn97071041&lccn=sn94049697&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Enterprise newspapers" title="Enterprise newspapers" />
-<area shape="rect" coords="343,148,383,164" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn97071004&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Vale newspapers" title="Vale newspapers" />
-<area shape="rect" coords="184,379,247,399" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=2004260350&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Roseburg newspapers" title="Roseburg newspapers" />
-<area shape="rect" coords="261,203,330,219" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn00063661&lccn=sn00063648&lccn=sn00063658&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Eugene newspapers" title="Eugene newspapers" />
-<area shape="rect" coords="122,165,173,182" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn84022644&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Eugene newspapers" title="Eugene newspapers" />
-<area shape="rect" coords="147,124,195,139" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088477&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Salem newspapers" title="Salem newspapers" />
-<area shape="rect" coords="67,137,112,155" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088088&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Toledo newspapers" title="Toledo newspapers" />
-<area shape="rect" coords="48,120,124,137" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn93050714&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Springfield newspapers" title="Springfield newspapers" />
-<area shape="rect" coords="122,88,187,106" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088374&lccn=sn96088375&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Tillamook newspapers" title="Tillamook newspapers" />
-<area shape="rect" coords="77,64,138,80" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088160&lccn=sn84006724&lccn=sn96088159&lccn=sn93051621&lccn=sn93051620&lccn=sn84022654&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" alt="Astoria newspapers" title="Astoria newspapers" />
-<area shape="rect" coords="390,274,438,291" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088246&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Burns newspapers" alt="Burns newspapers" />
-<area shape="rect" coords="510,239,543,253" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn00063530&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Vale newspapers" alt="Vale newspapers" />
-<area shape="rect" coords="539,217,590,238" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn00063520&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Ontario newspapers" alt="Ontario newspapers" />
-<area shape="rect" coords="391,181,466,205" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn85042403&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Canyon City newspapers" alt="Canyon City newspapers" />
-<area shape="rect" coords="518,151,577,170" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088408&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Richland newspapers" alt="Richland newspapers" />
-<area shape="rect" coords="449,151,505,170" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088466&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Sumpter newspapers" alt="Sumpter newspapers" />
-<area shape="rect" coords="529,107,580,125" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn94052752&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced" title="Joseph newspapers" alt="Joseph newspapers" />
-<area shape="rect" coords="480,112,529,130" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn93051670&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Union newspapers" alt="Union newspapers" />
-<area shape="rect" coords="511,85,577,107" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088044&amp;lccn=sn96088043&amp;lccn=sn96088042&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced" title="Enterprise newspapers" alt="Enterprise newspapers" />
-<area shape="rect" coords="397,61,464,77" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn88086023&amp;lccn=sn84022663&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=" title="Pendleton newspapers" alt="Pendleton newspapers" />
-<area shape="rect" coords="241,79,316,93" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn89055266&amp;lccn=sn85042448&amp;lccn=sn93051669&amp;lccn=2003260222&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;pr" title="The Dalles newspapers" alt="The Dalles newspapers" />
-<area shape="rect" coords="239,170,294,187" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn84024878&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Madras newspapers" alt="Madras newspapers" />
-<area shape="rect" coords="231,224,273,244" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088235&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Bend newspapers" alt="Bend newspapers" />
-<area shape="rect" coords="320,419,382,436" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn97071141&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Lakeview newspapers" alt="Lakeview newspapers" />
-<area shape="rect" coords="212,412,305,428" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn99063812&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Klamath Falls newspapers" alt="Klamath Falls newspapers" />
-<area shape="rect" coords="112,427,175,444" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088003&amp;lccn=sn85042399&amp;lccn=sn96088004&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced" title="Ashland newspapers" alt="Ashland newspapers" />
-<area shape="rect" coords="130,405,195,423" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=97071090&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Medford newspapers" alt="Medford newspapers" />
-<area shape="rect" coords="48,407,128,424" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn84022657&amp;lccn=sn84022658&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advance" title="Jacksonville newspapers" alt="Jacksonville newspapers" />
-<area shape="rect" coords="39,387,125,403" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088281&amp;lccn=sn96088180&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced" title="Grants Pass newspapers" alt="Grants Pass newspapers" />
-<area shape="rect" coords="11,329,62,345" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn93051610&amp;lccn=sn96088348&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advance" title="Bandon newspapers" alt="Bandon newspapers" />
-<area shape="rect" coords="92,314,152,336" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn84022679&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Roseburg newspapers" alt="Roseburg newspapers" />
-<area shape="rect" coords="22,297,95,315" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088440&amp;lccn=sn85033159&amp;lccn=sn96088441&amp;lccn=sn96088442&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdista" title="Coos Bay newspapers" alt="Coos Bay newspapers" />
-<area shape="rect" coords="38,274,114,291" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn98068707&amp;lccn=sn84022684&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advance" title="Scottsburg newspapers" alt="Scottsburg newspapers" />
-<area shape="rect" coords="74,252,166,267" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088074&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Cottage Grove newspapers" alt="Cottage Grove newspapers" />
-<area shape="rect" coords="122,227,198,244" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn97071002&amp;lccn=sn97071001&amp;lccn=sn97071003&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&am" title="Springfield newspapers" alt="Springfield newspapers" />
-<area shape="rect" coords="69,227,120,244" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96088145&amp;lccn=sn96088146&amp;lccn=sn83025130&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced" title="Eugene newspapers" alt="Eugene newspapers" />
-<area shape="rect" coords="45,163,90,181" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn85033162&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced" title="Toledo newspapers" alt="Toledo newspapers" />
-<area shape="rect" coords="113,138,161,153" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn99063954&amp;lccn=sn99063957&amp;lccn=sn99063955&amp;lccn=sn99063956&amp;lccn=sn99063952&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=adva" title="Salem newspapers" alt="Salem newspapers" />
-<area shape="rect" coords="144,104,221,125" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn84022661&amp;lccn=sn84022662&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advance" title="Oregon City newspapers" alt="Oregon City newspapers" />
-<area shape="rect" coords="141,74,198,89" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn83025138&amp;lccn=sn84022673&amp;lccn=sn85042444&amp;lccn=sn83045780&amp;lccn=sn00063676&amp;lccn=sn83045782&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andte" title="Portland newspapers" alt="Portland newspapers" />
-<area shape="rect" coords="47,83,112,101" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn99063850&amp;dateFilterType=yearRange&amp;date1=1846&amp;date2=1922&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;rows=20&amp;searchType=advanced&amp;sort=date" title="Tillamook newspapers" alt="Tillamook newspapers" />
-<area shape="rect" coords="100,39,166,55" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn97071109&lccn=sn93051654&lccn=2004260421&lccn=2004260419&dateFilterType=yearRange&date1=1846&date2=2013&ortext=&andtext=&phrasetext=&proxtext=&proxdistance=5&rows=20&searchType=advanced" title="St. Helens newspapers" alt="St. Helens newspapers" />
-  <area shape="rect" coords="69,17,120,33" href="http://oregonnews.uoregon.edu/search/pages/results/?lccn=sn96061149&amp;lccn=sn96061150&amp;lccn=sn96061148&amp;date1=1848&amp;date2=1922&amp;date1=&amp;date2=&amp;sequence=&amp;ortext=&amp;andtext=&amp;phrasetext=&amp;proxtext=&amp;proxdistance=5&amp;row" title="Astoria newspapers" alt="Astoria newspapers" />
-
-</map>             
-            </div><!-- end id:right_box --> 
-             <div class="clear"><!-- --></div> 
-<div class="summary">
-<p>&nbsp;</p>
-</div><!-- end summary -->  
-<div class="clear"><!-- --></div> 
-{% endblock %}  
+    <p>Welcome to Historic Oregon Newspapers. On this site you can search and access complete content for historic Oregon newspapers that have been digitized as part of the <a href="http://libweb.uoregon.edu/diglib/odnp/">Oregon Digital Newspaper Program (ODNP)</a>. </p>
+  </div><!-- end class:summary -->
+  <div class="clear"><!-- --></div>
+  <div id="left_box">
+    <div id="search_home">
+      <h2>Search Newspaper Pages:</h2>
+      <form action="{% url chronam_search_pages_results %}" method="get" name="fulltext" id="fulltext" class="search-pages">
+      <!-- search text field -->
+      {{ search_form.proxtext }}
+        <input type="image"  alt="GO" src="{% static 'images/or/or_btn_go.png' %}" class="ortext-btn" />
+        <input type="hidden" name="dateFilterType" value="range" />
+        <input type="hidden" name="rows" id="rows" value="20" />
+        <div class="pull-right">
+          <a href="{% url chronam_search_pages %}">Advanced Search</a>
+        </div>
+      </form>
+    </div> <!-- end id:search_home -->
+    <p align="center"><img src="{% static 'images/or/papertrail.png' %}" alt="image of news paper front covers" />
+    <div id="donate">
+      <p>The Oregon Digital Newspaper Program is committed to providing free online access to historic Oregon newspapers. This is made possible with the <a href="{% url chronam_acknow %}">support</a> of federal and state grants, the UO Libraries, and through private donations.</p><p><a href="http://libweb.uoregon.edu/diglib/odnp/contribute.html">Become a partner or contribute.</a></p>
+      <p><a href="https://securelb.imodules.com/s/1540/foundation/index.aspx?sid=1540&gid=1&pgid=408&bledit=1&dids=292" ><img src="{% static 'images/or/givebutton-smaller.gif' %}" alt="give now" /></a></p>
+    </div><!-- end id:donate -->
+  </div>    <!-- end id:left_box -->
+  <div id="right_box">
+      <img name="OregonMap_Home" src="{% static 'images/or/OregonMap_Prineville.jpg' %}" width="610" height="462" border="0" id="OregonMap_Home" usemap="#m_Oregon20Map_Home" alt="" />
+      <map name="m_Oregon20Map_Home" id="m_Oregon20Map_Home">
+        <area shape="rect" coords="75,181,133,198" href="http://oregonnews.uoregon.edu/titles/places/oregon/linn/corvallis/" alt="Corvallis newspapers" title="Corvallis newspapers" />
+        <area shape="rect" coords="200,62,275,76" href="http://oregonnews.uoregon.edu/titles/places/oregon/hood_river/hood_river/" alt="Hood River newspapers" title="Hood River newspapers" />
+        <area shape="rect" coords="427,91,494,107" href="http://oregonnews.uoregon.edu/titles/places/oregon/union/la_grande/" alt="La Grande newspapers" title="La Grande newspapers" />
+        <area shape="rect" coords="345,93,401,111" href="http://oregonnews.uoregon.edu/titles/places/oregon/morrow/heppner/" alt="Heppner newspapers" title="Heppner newspapers" />
+        <area shape="rect" coords="343,148,383,164" href="http://oregonnews.uoregon.edu/titles/places/oregon/wheeler/spray/" alt="Spray newspapers" title="Spray newspapers" />
+        <area shape="rect" coords="184,379,247,399" href="http://oregonnews.uoregon.edu/titles/places/oregon/klamath/chiloquin/" alt="Chiloquin newspapers" title="Chiloquin newspapers" />
+        <area shape="rect" coords="261,203,330,219" href="http://oregonnews.uoregon.edu/titles/places/oregon/crook/prineville/" alt="Prineville newspapers" title="Prineville newspapers" />
+        <area shape="rect" coords="122,165,173,182" href="http://oregonnews.uoregon.edu/titles/places/oregon/linn/albany/" alt="Albany newspapers" title="Albany newspapers" />
+        <area shape="rect" coords="147,124,195,139" href="http://oregonnews.uoregon.edu/titles/places/oregon/marion/aurora/" alt="Aurora newspapers" title="Aurora newspapers" />
+        <area shape="rect" coords="67,137,112,155" href="http://oregonnews.uoregon.edu/titles/places/oregon/polk/dallas/" alt="Dallas newspapers" title="Dallas newspapers" />
+        <area shape="rect" coords="48,120,124,137" href="http://oregonnews.uoregon.edu/titles/places/oregon/polk/grand_ronde/" alt="Grand Ronde newspapers" title="Grand Ronde newspapers" />
+        <area shape="rect" coords="122,88,187,106" href="http://oregonnews.uoregon.edu/titles/places/oregon/washington/beaverton/" alt="Beaverton newspapers" title="Beaverton newspapers" />
+        <area shape="rect" coords="77,64,138,80" href="http://oregonnews.uoregon.edu/titles/places/oregon/washington/hillsboro/" alt="Hillsboro newspapers" title="Hillsboro newspapers" />
+        <area shape="rect" coords="390,274,438,291" href="http://oregonnews.uoregon.edu/titles/places/oregon/harney/burns/" title="Burns newspapers" alt="Burns newspapers" />
+        <area shape="rect" coords="510,239,543,253" href="http://oregonnews.uoregon.edu/titles/places/oregon/malheur/vale/" title="Vale newspapers" alt="Vale newspapers" />
+        <area shape="rect" coords="539,217,590,238" href="http://oregonnews.uoregon.edu/titles/places/oregon/malheur/ontario/" title="Ontario newspapers" alt="Ontario newspapers" />
+        <area shape="rect" coords="391,181,466,205" href="http://oregonnews.uoregon.edu/titles/places/oregon/grant/canyon_city/" title="Canyon City newspapers" alt="Canyon City newspapers" />
+        <area shape="rect" coords="518,151,577,170" href="http://oregonnews.uoregon.edu/titles/places/oregon/baker/richland/" title="Richland newspapers" alt="Richland newspapers" />
+        <area shape="rect" coords="449,151,505,170" href="http://oregonnews.uoregon.edu/titles/places/oregon/baker/sumpter/" title="Sumpter newspapers" alt="Sumpter newspapers" />
+        <area shape="rect" coords="529,107,580,125" href="http://oregonnews.uoregon.edu/titles/places/oregon/wallowa/joseph/" title="Joseph newspapers" alt="Joseph newspapers" />
+        <area shape="rect" coords="480,112,529,130" href="http://oregonnews.uoregon.edu/titles/places/oregon/union/union/" title="Union newspapers" alt="Union newspapers" />
+        <area shape="rect" coords="511,85,577,107" href="http://oregonnews.uoregon.edu/titles/places/oregon/wallowa/enterprise/" title="Enterprise newspapers" alt="Enterprise newspapers" />
+        <area shape="rect" coords="397,61,464,77" href="http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/pendleton/" title="Pendleton newspapers" alt="Pendleton newspapers" />
+        <area shape="rect" coords="241,79,316,93" href="http://oregonnews.uoregon.edu/titles/places/oregon/wasco/dalles/" title="The Dalles newspapers" alt="The Dalles newspapers" />
+        <area shape="rect" coords="239,170,294,187" href="http://oregonnews.uoregon.edu/titles/places/oregon/jefferson/madras/" title="Madras newspapers" alt="Madras newspapers" />
+        <area shape="rect" coords="231,224,273,244" href="http://oregonnews.uoregon.edu/titles/places/oregon/deschutes/bend/" title="Bend newspapers" alt="Bend newspapers" />
+        <area shape="rect" coords="320,419,382,436" href="http://oregonnews.uoregon.edu/titles/places/oregon/lake/lakeview/" title="Lakeview newspapers" alt="Lakeview newspapers" />
+        <area shape="rect" coords="212,412,305,428" href="http://oregonnews.uoregon.edu/titles/places/oregon/klamath/klamath_falls/" title="Klamath Falls newspapers" alt="Klamath Falls newspapers" />
+        <area shape="rect" coords="112,427,175,444" href="http://oregonnews.uoregon.edu/titles/places/oregon/jackson/ashland/" title="Ashland newspapers" alt="Ashland newspapers" />
+        <area shape="rect" coords="130,405,195,423" href="http://oregonnews.uoregon.edu/titles/places/oregon/jackson/medford/" title="Medford newspapers" alt="Medford newspapers" />
+        <area shape="rect" coords="48,407,128,424" href="http://oregonnews.uoregon.edu/titles/places/oregon/jackson/jacksonville/" title="Jacksonville newspapers" alt="Jacksonville newspapers" />
+        <area shape="rect" coords="39,387,125,403" href="http://oregonnews.uoregon.edu/titles/places/oregon/josephine/grants_pass/" title="Grants Pass newspapers" alt="Grants Pass newspapers" />
+        <area shape="rect" coords="11,329,62,345" href="http://oregonnews.uoregon.edu/titles/places/oregon/coos/bandon/" title="Bandon newspapers" alt="Bandon newspapers" />
+        <area shape="rect" coords="92,314,152,336" href="http://oregonnews.uoregon.edu/titles/places/oregon/douglas/roseburg/" title="Roseburg newspapers" alt="Roseburg newspapers" />
+        <area shape="rect" coords="22,297,95,315" href="http://oregonnews.uoregon.edu/titles/places/oregon/coos/coos_bay/" title="Coos Bay newspapers" alt="Coos Bay newspapers" />
+        <area shape="rect" coords="38,274,114,291" href="http://oregonnews.uoregon.edu/titles/places/oregon/douglas/scottsburg/" title="Scottsburg newspapers" alt="Scottsburg newspapers" />
+        <area shape="rect" coords="74,252,166,267" href="http://oregonnews.uoregon.edu/titles/places/oregon/lane/cottage_grove/" title="Cottage Grove newspapers" alt="Cottage Grove newspapers" />
+        <area shape="rect" coords="122,227,198,244" href="http://oregonnews.uoregon.edu/titles/places/oregon/lane/springfield/" title="Springfield newspapers" alt="Springfield newspapers" />
+        <area shape="rect" coords="69,227,120,244" href="http://oregonnews.uoregon.edu/titles/places/oregon/lane/eugene/" title="Eugene newspapers" alt="Eugene newspapers" />
+        <area shape="rect" coords="45,163,90,181" href="http://oregonnews.uoregon.edu/titles/places/oregon/lincoln/toledo/" title="Toledo newspapers" alt="Toledo newspapers" />
+        <area shape="rect" coords="113,138,161,153" href="http://oregonnews.uoregon.edu/titles/places/oregon/marion/salem/" title="Salem newspapers" alt="Salem newspapers" />
+        <area shape="rect" coords="144,104,221,125" href="http://oregonnews.uoregon.edu/titles/places/oregon/clackamas/oregon_city/" title="Oregon City newspapers" alt="Oregon City newspapers" />
+        <area shape="rect" coords="141,74,198,89" href="http://oregonnews.uoregon.edu/titles/places/oregon/multnomah/portland/" title="Portland newspapers" alt="Portland newspapers" />
+        <area shape="rect" coords="47,83,112,101" href="http://oregonnews.uoregon.edu/titles/places/oregon/tillamook/tillamook/" title="Tillamook newspapers" alt="Tillamook newspapers" />
+        <area shape="rect" coords="100,39,166,55" href="http://oregonnews.uoregon.edu/titles/places/oregon/columbia/saint_helens/" title="St. Helens newspapers" alt="St. Helens newspapers" />
+        <area shape="rect" coords="69,17,120,33" href="http://oregonnews.uoregon.edu/titles/places/oregon/clatsop/astoria/" title="Astoria newspapers" alt="Astoria newspapers" />
+      </map>
+  </div><!-- end id:right_box -->
+  <div class="clear"><!-- --></div>
+  <div class="summary">
+    <p>&nbsp;</p>
+  </div><!-- end summary -->
+  <div class="clear"><!-- --></div>
+{% endblock %}
  
