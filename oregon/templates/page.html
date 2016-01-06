@@ -199,7 +199,7 @@ data-navigation_url="{% url chronam_search_pages_navigation %}?"
           <li><strong>Flickr Link</strong> <a href="{{ page.first_flickr_url }}">{{ page.first_flickr_url }}</a></li>
           {% endif %}
           {% if issue.copyright %}
-           <li><a href="{{ issue.copyright.uri }}">{{ issue.copyright.label }}</a></li>
+           <li>Copyright Statement <a href="{{ issue.copyright.uri }}" target="_blank">{{ issue.copyright.label }}</a></li>
           {% endif %}
         </ul>
       </div>
