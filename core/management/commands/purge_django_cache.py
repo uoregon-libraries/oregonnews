@@ -24,6 +24,10 @@ class Command(BaseCommand):
             LOGGER.info('removing titles_states from cache')
             cache.delete('titles_states')
 
+            # Delete the fulltext range so the search form is up-to-date
+            LOGGER.info('Removing fulltext_range from cache')
+            cache.delete('fulltext_range')
+
         except Exception, e:
             LOGGER.exception(e)
             raise CommandError("unable to purge the cache. check the purge_batch_cache log for clues")
