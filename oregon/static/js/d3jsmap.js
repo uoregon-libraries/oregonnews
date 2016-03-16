@@ -16,7 +16,7 @@ var projection = d3.geo.mercator()
 var path = d3.geo.path()
     .projection(projection)
 
-d3.json("{% static 'js/or2.json' %}", function(error, or) {
+d3.json("media/js/or2.json", function(error, or) {
   if (error) return console.error(error);
 
   //draw the state
@@ -35,7 +35,7 @@ d3.json("{% static 'js/or2.json' %}", function(error, or) {
     .attr("width","100%")
     .attr("height","100%")
     .append("feImage")
-    .attr("xlink:href", "{% static 'images/or/or-map.png' %}" );
+    .attr("xlink:href", "media/images/or/or-map.png" );
 
   svg.append("filter")
     .attr("id","textbg")
@@ -53,7 +53,7 @@ d3.json("{% static 'js/or2.json' %}", function(error, or) {
   var label_array = [];
   var anchor_array = [];
 
-  d3.csv("{% static 'titlecities.txt' %}", function(error, data){
+  d3.csv("media/titlecities.txt", function(error, data){
     svg.selectAll("circle")
     .data(data)
     .enter()
