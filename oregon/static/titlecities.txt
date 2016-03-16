@@ -49,3 +49,14 @@ Denmark,42.89066,-124.46261,http://oregonnews.uoregon.edu/titles/places/oregon/c
 Maupin,45.1731,-121.08827,http://oregonnews.uoregon.edu/titles/places/oregon/wasco/maupin/
 Monmouth,44.8505,-123.2284,http://oregonnews.uoregon.edu/titles/places/oregon/polk/monmouth/
 Warm Springs,44.76345,-121.26616,http://oregonnews.uoregon.edu/titles/places/oregon/jefferson/warm_springs/
+Lexington,45.5778,-119.6071,http://oregonnews.uoregon.edu/titles/places/oregon/morrow/lexington/
+Boardman,45.7788,-119.5290,http://oregonnews.uoregon.edu/titles/places/oregon/morrow/boardman/
+Ione,45.4909,-119.8359,http://oregonnews.uoregon.edu/titles/places/oregon/morrow/ione/
+Cannon Beach,45.8918,-123.9615,http://oregonnews.uoregon.edu/titles/places/oregon/clatsop/cannon_beach/
+Hermiston,45.8504,-119.2130,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/hermiston/
+John Day,44.3675,-118.8084,http://oregonnews.uoregon.edu/titles/places/oregon/grant/john_day/
+Seaside,45.9282,-123.7093,http://oregonnews.uoregon.edu/titles/places/oregon/clatsop/seaside/
+Baker City,44.8141,-117.7453,http://oregonnews.uoregon.edu/titles/places/oregon/baker/baker_city/
+Florence,44.1213,-124.0023,http://oregonnews.uoregon.edu/titles/places/oregon/lane/florence/
+Sisters,44.4102,-121.9283,http://oregonnews.uoregon.edu/titles/places/oregon/deschutes/sisters/
+Athena,45.8363,-118.5179,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/athena/
