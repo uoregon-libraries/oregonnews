@@ -16,7 +16,7 @@ var projection = d3.geo.mercator()
 var path = d3.geo.path()
     .projection(projection)
 
-d3.json("media/js/or2.json", function(error, or) {
+d3.json("media/js/or3.json", function(error, or) {
   if (error) return console.error(error);
 
   //draw the state
