@@ -1,0 +1,62 @@
+label,lat,lon,url
+Corvallis,44.56959,-123.27832,http://oregonnews.uoregon.edu/titles/places/oregon/benton/corvallis/
+Hood River,45.70926,-121.52587,http://oregonnews.uoregon.edu/titles/places/oregon/hood_river/hood_river/
+La Grande,45.32417,-118.08646,http://oregonnews.uoregon.edu/titles/places/oregon/union/la_grande/
+Heppner,45.35468,-119.55597,http://oregonnews.uoregon.edu/titles/places/oregon/morrow/heppner/
+Spray,44.83311,-119.79426,http://oregonnews.uoregon.edu/titles/places/oregon/wheeler/spray/
+Chiloquin,42.57642,-121.86775,http://oregonnews.uoregon.edu/titles/places/oregon/klamath/chiloquin/
+Prineville,44.29989,-120.85832,http://oregonnews.uoregon.edu/titles/places/oregon/crook/prineville/
+Albany,44.62746,-123.09671,http://oregonnews.uoregon.edu/titles/places/oregon/linn/albany/
+Aurora,45.2284,-122.75721,http://oregonnews.uoregon.edu/titles/places/oregon/marion/aurora/
+Dallas,44.91928,-123.31705,http://oregonnews.uoregon.edu/titles/places/oregon/polk/dallas/
+Grand Ronde,45.06011,-123.60928,http://oregonnews.uoregon.edu/titles/places/oregon/polk/grand_ronde/
+Beaverton,45.47984,-122.81504,http://oregonnews.uoregon.edu/titles/places/oregon/washington/beaverton/
+Hillsboro,45.52904,-122.93744,http://oregonnews.uoregon.edu/titles/places/oregon/washington/hillsboro/
+Burns,43.58626,-119.0541,http://oregonnews.uoregon.edu/titles/places/oregon/harney/burns/
+Vale,43.98395,-117.24175,http://oregonnews.uoregon.edu/titles/places/oregon/malheur/vale/
+Ontario,44.02589,-116.97602,http://oregonnews.uoregon.edu/titles/places/oregon/malheur/ontario/
+Canyon City,44.39301,-118.94949,http://oregonnews.uoregon.edu/titles/places/oregon/grant/canyon_city/
+Richland,44.7678,-117.16907,http://oregonnews.uoregon.edu/titles/places/oregon/baker/richland/
+Sumpter,44.74355,-118.19746,http://oregonnews.uoregon.edu/titles/places/oregon/baker/sumpter/
+Joseph,45.35272,-117.23046,http://oregonnews.uoregon.edu/titles/places/oregon/wallowa/joseph/
+Union,45.20847,-117.86521,http://oregonnews.uoregon.edu/titles/places/oregon/union/union/
+Enterprise,45.42585,-117.27849,http://oregonnews.uoregon.edu/titles/places/oregon/wallowa/enterprise/
+Pendleton,45.67471,-118.81739,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/pendleton/
+The Dalles,45.5937,-121.17389,http://oregonnews.uoregon.edu/titles/places/oregon/wasco/dalles/
+Madras,44.63842,-121.12698,http://oregonnews.uoregon.edu/titles/places/oregon/jefferson/madras/
+Bend,44.05618,-121.30869,http://oregonnews.uoregon.edu/titles/places/oregon/deschutes/bend/
+Lakeview,42.19131,-120.35222,http://oregonnews.uoregon.edu/titles/places/oregon/lake/lakeview/
+Klamath Falls,42.21932,-121.77548,http://oregonnews.uoregon.edu/titles/places/oregon/klamath/klamath_falls/
+Ashland,42.19054,-122.69923,http://oregonnews.uoregon.edu/titles/places/oregon/jackson/ashland/
+Medford,42.3372,-122.85364,http://oregonnews.uoregon.edu/titles/places/oregon/jackson/medford/
+Jacksonville,42.31263,-122.96917,http://oregonnews.uoregon.edu/titles/places/oregon/jackson/jacksonville/
+Grants Pass,42.43402,-123.33248,http://oregonnews.uoregon.edu/titles/places/oregon/josephine/grants_pass/
+Bandon,43.11428,-124.4157,http://oregonnews.uoregon.edu/titles/places/oregon/coos/bandon/
+Roseburg,43.2165,-123.34174,http://oregonnews.uoregon.edu/titles/places/oregon/douglas/roseburg/
+Coos Bay,43.37892,-124.23299,http://oregonnews.uoregon.edu/titles/places/oregon/coos/coos_bay/
+Scottsburg,43.65401,-123.81677,http://oregonnews.uoregon.edu/titles/places/oregon/douglas/scottsburg/
+Cottage Grove,43.7959,-123.05803,http://oregonnews.uoregon.edu/titles/places/oregon/lane/cottage_grove/
+Springfield,44.04624,-123.02203,http://oregonnews.uoregon.edu/titles/places/oregon/lane/springfield/
+Eugene,44.05207,-123.08675,http://oregonnews.uoregon.edu/titles/places/oregon/lane/eugene/
+Toledo,44.62151,-123.93845,http://oregonnews.uoregon.edu/titles/places/oregon/lincoln/toledo/
+Salem,44.9429,-123.0351,http://oregonnews.uoregon.edu/titles/places/oregon/marion/salem/
+Oregon City,45.35734,-122.60676,http://oregonnews.uoregon.edu/titles/places/oregon/clackamas/oregon_city/
+Portland,45.52345,-122.67621,http://oregonnews.uoregon.edu/titles/places/oregon/multnomah/portland/
+Tillamook,45.4564,-123.84553,http://oregonnews.uoregon.edu/titles/places/oregon/tillamook/tillamook/
+St. Helens,45.85788,-122.81603,http://oregonnews.uoregon.edu/titles/places/oregon/columbia/st_helens/
+Astoria,46.18824,-123.81026,http://oregonnews.uoregon.edu/titles/places/oregon/clatsop/astoria/
+Denmark,42.89066,-124.46261,http://oregonnews.uoregon.edu/titles/places/oregon/curry/denmark/
+Maupin,45.1731,-121.08827,http://oregonnews.uoregon.edu/titles/places/oregon/wasco/maupin/
+Monmouth,44.8505,-123.2284,http://oregonnews.uoregon.edu/titles/places/oregon/polk/monmouth/
+Warm Springs,44.76345,-121.26616,http://oregonnews.uoregon.edu/titles/places/oregon/jefferson/warm_springs/
+Lexington,45.5778,-119.6071,http://oregonnews.uoregon.edu/titles/places/oregon/morrow/lexington/
+Boardman,45.7788,-119.5290,http://oregonnews.uoregon.edu/titles/places/oregon/morrow/boardman/
+Ione,45.4909,-119.8359,http://oregonnews.uoregon.edu/titles/places/oregon/morrow/ione/
+Cannon Beach,45.8918,-123.9615,http://oregonnews.uoregon.edu/titles/places/oregon/clatsop/cannon_beach/
+Hermiston,45.8504,-119.2130,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/hermiston/
+John Day,44.3675,-118.8084,http://oregonnews.uoregon.edu/titles/places/oregon/grant/john_day/
+Seaside,45.9282,-123.7093,http://oregonnews.uoregon.edu/titles/places/oregon/clatsop/seaside/
+Baker City,44.8141,-117.7453,http://oregonnews.uoregon.edu/titles/places/oregon/baker/baker_city/
+Florence,44.1213,-124.0023,http://oregonnews.uoregon.edu/titles/places/oregon/lane/florence/
+Sisters,44.4102,-121.9283,http://oregonnews.uoregon.edu/titles/places/oregon/deschutes/sisters/
+Athena,45.8363,-118.5179,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/athena/
