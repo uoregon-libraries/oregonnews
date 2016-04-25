@@ -60,3 +60,4 @@ Baker City,44.8141,-117.7453,http://oregonnews.uoregon.edu/titles/places/oregon/
 Florence,44.1213,-124.0023,http://oregonnews.uoregon.edu/titles/places/oregon/lane/florence/
 Sisters,44.4102,-121.9283,http://oregonnews.uoregon.edu/titles/places/oregon/deschutes/sisters/
 Athena,45.8363,-118.5179,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/athena/
+Independence,44.85123,-123.18677,http://oregonnews.uoregon.edu/titles/places/oregon/polk/independence
