@@ -43,7 +43,7 @@ Salem,44.9429,-123.0351,http://oregonnews.uoregon.edu/titles/places/oregon/mario
 Oregon City,45.35734,-122.60676,http://oregonnews.uoregon.edu/titles/places/oregon/clackamas/oregon_city/
 Portland,45.52345,-122.67621,http://oregonnews.uoregon.edu/titles/places/oregon/multnomah/portland/
 Tillamook,45.4564,-123.84553,http://oregonnews.uoregon.edu/titles/places/oregon/tillamook/tillamook/
-St. Helens,45.85788,-122.81603,http://oregonnews.uoregon.edu/titles/places/oregon/columbia/st_helens/
+St. Helens,45.85788,-122.81603,http://oregonnews.uoregon.edu/titles/places/oregon/columbia/saint_helens/
 Astoria,46.18824,-123.81026,http://oregonnews.uoregon.edu/titles/places/oregon/clatsop/astoria/
 Denmark,42.89066,-124.46261,http://oregonnews.uoregon.edu/titles/places/oregon/curry/denmark/
 Maupin,45.1731,-121.08827,http://oregonnews.uoregon.edu/titles/places/oregon/wasco/maupin/
@@ -61,3 +61,5 @@ Florence,44.1213,-124.0023,http://oregonnews.uoregon.edu/titles/places/oregon/la
 Sisters,44.4102,-121.9283,http://oregonnews.uoregon.edu/titles/places/oregon/deschutes/sisters/
 Athena,45.8363,-118.5179,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/athena/
 Independence,44.85123,-123.18677,http://oregonnews.uoregon.edu/titles/places/oregon/polk/independence
+Weston,45.81374,-118.42469,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/weston/
+Lebanon,44.53651,-122.90703,http://oregonnews.uoregon.edu/titles/places/oregon/linn/lebanon/
