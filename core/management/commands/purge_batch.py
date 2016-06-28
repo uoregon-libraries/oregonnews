@@ -19,12 +19,7 @@ log = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    option_list = BaseCommand.option_list + (
-        make_option('--no-optimize', 
-                    action='store_false', 
-                    dest='optimize', default=True,
-                    help='Do not optimize Solr and MySQL after purge'),
-    )
+    option_list = BaseCommand.option_list
     help = "Purge a batch"
     args = '<batch_location>'
 
@@ -36,14 +31,6 @@ class Command(BaseCommand):
         try:
             log.info("purging batch %s", batch_location)
             loader.purge_batch(batch_location)
-            if options['optimize']:
-                log.info("optimizing solr")
-                solr = SolrConnection(settings.SOLR)
-                solr.optimize()
-                log.info("optimizing MySQL OCR table")
-                cursor = connection.cursor()
-                cursor.execute("OPTIMIZE TABLE core_ocr")
-                log.info("finished optimizing")
         except BatchLoaderException, e:
             log.exception(e)
             raise CommandError("unable to purge batch. check the purge_batch log for clues")
