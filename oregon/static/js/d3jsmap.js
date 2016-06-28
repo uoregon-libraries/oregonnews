@@ -5,7 +5,8 @@ var width = 960,
 
 var svg = d3.select("#right_box").append("svg")
     .attr("width", width)
-    .attr("height", height);
+    .attr("height", height)
+    .attr("id", "svgmap");
 
 //set up projection
 var projection = d3.geo.mercator()

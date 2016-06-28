@@ -1298,7 +1298,10 @@ homepage
     position:relative;
     margin-left:67px;
 }
-
+#svgmap {
+    width:630px !important;
+    height:530px !important;
+}
 /********************* search directory *********************/
 #wrap_searchdir {border:1px solid #c3d5e0;}
 #wrap_searchdir.w_pad {padding:15px;}
