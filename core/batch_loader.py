@@ -402,7 +402,7 @@ class BatchLoader(object):
                     if j2k:
                         width, length = j2k.dimensions(page.jp2_abs_filename)
                     else:
-                        width, length = gmidentify_dimensions(page.jp2_abs_filename)
+                        width, length = raistool_dimensions(page.jp2_abs_filename)
 
                     page.jp2_width = width
                     page.jp2_length = length
@@ -550,11 +550,14 @@ def dmd_mods(doc, dmdid):
 
 # UO HACK!  No j2k extension, just a raw shell call.  This is bad, but
 # necessary for born-digital items that don't get run through the validator
-def gmidentify_dimensions(path):
+def raistool_dimensions(path):
   import subprocess
-  pipe = subprocess.Popen(["gm", "identify", path, "-format", "%w %h"],
-                          stdout = subprocess.PIPE)
-  return pipe.communicate()[0].strip().split(" ")
+  pipe = subprocess.Popen(["/opt/chronam-support/jp2info", path], stdout = subprocess.PIPE)
+  raw = pipe.communicate()[0].strip()
+  match = re.search('dim:(\d+)x(\d+) ', raw)
+  if match:
+    return match.group(1), match.group(2)
+  return None, None
 
 def get_dimensions(doc, admid):
     """return length, width for an image from techincal metadata with a given
