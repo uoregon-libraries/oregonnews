@@ -63,3 +63,4 @@ Athena,45.8363,-118.5179,http://oregonnews.uoregon.edu/titles/places/oregon/umat
 Independence,44.85123,-123.18677,http://oregonnews.uoregon.edu/titles/places/oregon/polk/independence
 Weston,45.81374,-118.42469,http://oregonnews.uoregon.edu/titles/places/oregon/umatilla/weston/
 Lebanon,44.53651,-122.90703,http://oregonnews.uoregon.edu/titles/places/oregon/linn/lebanon/
+Coquille,43.17705,-124.18761,http://oregonnews.uoregon.edu/titles/places/oregon/coos/coquille/
