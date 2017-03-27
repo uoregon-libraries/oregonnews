@@ -9,25 +9,31 @@
 {% endblock head_content %}
 <!--added everything below from old home, replaced block content with block content-->
 {% block subcontent %}
-  <div class="summary">
-    <p>Welcome to Historic Oregon Newspapers. On this site you can search and access complete content for historic Oregon newspapers that have been digitized as part of the <a href="http://libweb.uoregon.edu/diglib/odnp/">Oregon Digital Newspaper Program (ODNP)</a>. </p>
-  </div><!-- end class:summary -->
+  <div id="search_home">
+    <h2>Search Newspaper Pages:</h2>
+    <form action="{% url chronam_search_pages_results %}" method="get" name="fulltext" id="fulltext" class="search-pages">
+    <!-- search text field -->
+      {{ search_form.proxtext }}
+      <input type="image"  alt="GO" src="{% static 'images/or/or_btn_go.png' %}" class="ortext-btn" />
+      <input type="hidden" name="dateFilterType" value="range" />
+      <input type="hidden" name="rows" id="rows" value="20" />
+      <div class="pull-right">
+        <a href="{% url chronam_search_pages %}">Advanced Search</a>
+      </div>
+    </form>
+  </div> <!-- end id:search_home -->
+
   <div class="clear"><!-- --></div>
   <div id="left_box">
-    <div id="search_home">
-      <h2>Search Newspaper Pages:</h2>
-      <form action="{% url chronam_search_pages_results %}" method="get" name="fulltext" id="fulltext" class="search-pages">
-      <!-- search text field -->
-      {{ search_form.proxtext }}
-        <input type="image"  alt="GO" src="{% static 'images/or/or_btn_go.png' %}" class="ortext-btn" />
-        <input type="hidden" name="dateFilterType" value="range" />
-        <input type="hidden" name="rows" id="rows" value="20" />
-        <div class="pull-right">
-          <a href="{% url chronam_search_pages %}">Advanced Search</a>
-        </div>
-      </form>
-    </div> <!-- end id:search_home -->
-    <p align="center"><img src="{% static 'images/or/papertrail.png' %}" alt="image of news paper front covers" />
+    <div id="this_day">
+      <h2>This Day in History</h2>
+      {% if pages.first %}
+        <a href="{{ pages.first.url }}">
+          <img class="thumbnail" src="{{ pages.first.thumbnail_url}}"/>
+          <p>{% pages.first.label %}, {% date %}
+        </a>
+      {% endif %}
+    </div>
     <div id="donate">
       <p>The Oregon Digital Newspaper Program is committed to providing free online access to historic Oregon newspapers. This is made possible with the <a href="{% url chronam_acknow %}">support</a> of federal and state grants, the UO Libraries, and through private donations.</p><p><a href="http://libweb.uoregon.edu/diglib/odnp/contribute.html">Become a partner or contribute.</a></p>
       <p><a href="https://securelb.imodules.com/s/1540/foundation/index.aspx?sid=1540&gid=1&pgid=408&bledit=1&dids=292" ><img src="{% static 'images/or/givebutton-smaller.gif' %}" alt="give now" /></a></p>
