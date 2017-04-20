@@ -35,10 +35,11 @@ ROOT_URLCONF = 'chronam.urls'
 
 DATABASES = {
     'default': {
+        'HOST': 'mysql',
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'chronam',
         'USER': 'chronam',
-        'PASSWORD': 'pick_one',
+        'PASSWORD': 'chronam123',
         }
     }
 
@@ -116,7 +117,7 @@ import multiprocessing
 #TOO_BUSY_LOAD_AVERAGE = 1.5 * multiprocessing.cpu_count()
 TOO_BUSY_LOAD_AVERAGE = 64 
 
-SOLR = "http://localhost:8080/solr"
+SOLR = "http://solr:8983/solr"
 SOLR_LANGUAGES = ("eng", "fre", "spa")
 
 DOCUMENT_ROOT = "/opt/chronam/static"
