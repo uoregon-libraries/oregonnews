@@ -16,9 +16,20 @@
      
     {% block extrahead %}{% endblock extrahead %}{% endblock head_content %}
 
-{% block content %}{% block page_head_container %}{% block page_head %}{% block sub_page_head %}{% if page_title %}
-    <h1>{{ page_title }}</h1>{% endif %}{% endblock sub_page_head %}{% endblock page_head%}{% endblock page_head_container %}
-    <div>
-      <a name="skip_menu"></a>{% block main_content %}{% endblock main_content %}
-    </div>{% block subcontent %}{% endblock subcontent %}{% endblock content %}
+{% block content %}
+  {% block page_head_container %}{% block page_head %}{% block sub_page_head %}
+    <div class="box-notice">
+      <b>Notice:</b> Historic Oregon Newspapers is undergoing maintenance and
+      updates. A new interface will be launched in August 2017
+    </div>
+    {% if page_title %}
+      <h1>{{ page_title }}</h1>
+    {% endif %}
+  {% endblock sub_page_head %}{% endblock page_head%}{% endblock page_head_container %}
 
+  <div>
+    <a name="skip_menu"></a>
+    {% block main_content %}{% endblock main_content %}
+  </div>
+  {% block subcontent %}{% endblock subcontent %}
+{% endblock content %}
